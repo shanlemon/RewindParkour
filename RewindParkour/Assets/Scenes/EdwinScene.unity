@@ -188,7 +188,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4945f1f2322221c4ebd303bbac149fca, type: 2}
+  - {fileID: 2100000, guid: 1fcff42587e9bd8409b148c6ad7c82ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,10 +259,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 468226622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d10d704abb0aed458c3c4d4d6df6373, type: 3}
+  m_Script: {fileID: 11500000, guid: 050ddc765688d95469329beb764af131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 1890627663}
+  gun: {fileID: 1890627665}
 --- !u!1 &469285262
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +471,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4945f1f2322221c4ebd303bbac149fca, type: 2}
+  - {fileID: 2100000, guid: 1fcff42587e9bd8409b148c6ad7c82ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -848,6 +848,7 @@ GameObject:
   - component: {fileID: 1890627662}
   - component: {fileID: 1890627664}
   - component: {fileID: 1890627663}
+  - component: {fileID: 1890627665}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -884,13 +885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162412dafc4f73b459e29b198dec8d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 256
-  gunTip: {fileID: 780004664}
-  camera: {fileID: 1647867781}
-  player: {fileID: 1314547179}
-  maxDistance: 100
 --- !u!120 &1890627664
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -989,6 +983,25 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1890627665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890627661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5502a9e04376548aa445a84710173a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsGrappleable:
+    serializedVersion: 2
+    m_Bits: 256
+  gunTip: {fileID: 780004664}
+  camera: {fileID: 1647867781}
+  player: {fileID: 1314547179}
+  maxDistance: 100
 --- !u!1 &2060186491
 GameObject:
   m_ObjectHideFlags: 0
