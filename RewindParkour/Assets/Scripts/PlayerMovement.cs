@@ -8,11 +8,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = default;
 
-    private Vector2 movementInput = default;
+    private Vector3 movementInput = default;
     private Rigidbody rb;
 
     private void Start() {
-        movementInput = new Vector2();
+        movementInput = new Vector3();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -26,12 +26,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void DoMovement()
     {
-        rb.velocity = transform.forward * movementInput * movementSpeed * Time.deltaTime;
+        rb.velocity = (movementInput.x * transform.right + movementInput.z * transform.forward).normalized * movementSpeed;
+        Debug.Log(rb.velocity);
     }
 
     private void GetInput()
     {
         movementInput.x = Input.GetAxisRaw("Horizontal");
-        movementInput.y = Input.GetAxisRaw("Vertical");
+        movementInput.z = Input.GetAxisRaw("Vertical");
     }
 }
