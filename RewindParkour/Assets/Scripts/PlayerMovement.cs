@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private void DoMovement()
     {
         rb.velocity = (movementInput.x * transform.right + movementInput.z * transform.forward).normalized * movementSpeed;
-        Debug.Log(rb.velocity);
     }
 
     private void GetInput()
