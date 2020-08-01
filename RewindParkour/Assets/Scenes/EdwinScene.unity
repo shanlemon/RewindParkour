@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -675,7 +675,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d2d477edef8c49ad4b1e28ceaac6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  playerCam: {fileID: 0}
+  orientation: {fileID: 0}
+  moveSpeed: 4500
+  maxSpeed: 20
+  grounded: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  counterMovement: 0.175
+  maxSlopeAngle: 35
+  slideForce: 400
+  slideCounterMovement: 0.2
+  jumpForce: 550
 --- !u!54 &1314547177
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -882,9 +894,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1890627661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162412dafc4f73b459e29b198dec8d49, type: 3}
+  m_Script: {fileID: 11500000, guid: 050ddc765688d95469329beb764af131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 1890627665}
 --- !u!120 &1890627664
 LineRenderer:
   m_ObjectHideFlags: 0

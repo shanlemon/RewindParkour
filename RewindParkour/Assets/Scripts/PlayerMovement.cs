@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//Rotation and look
 	private float xRotation;
-	private float sensitivity = 50f;
+	[SerializeField] private float sensitivity = 50f;
 	private float sensMultiplier = 1f;
 
 	//Movement
