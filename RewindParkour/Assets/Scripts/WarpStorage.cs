@@ -6,6 +6,7 @@ using UnityEngine;
 public class WarpStorage : MonoBehaviour
 {
     [SerializeField] private float warpTime = 0.2f;
+    [SerializeField] private float warpSpeed = 1.4f;
     [SerializeField] private KeyCode KeyToWarp = KeyCode.E;
     private Rigidbody toWarp = null;
 
@@ -32,7 +33,7 @@ public class WarpStorage : MonoBehaviour
         if (Input.GetKeyUp(KeyToWarp))
         {
             if (previousVelocities.Count > 0)
-                toWarp.velocity = 5 * previousVelocities[previousVelocities.Count - 1];
+                toWarp.velocity = -warpSpeed * previousVelocities[previousVelocities.Count - 1];
         }
     }
 
