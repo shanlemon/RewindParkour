@@ -29,8 +29,10 @@ public class WarpStorage : MonoBehaviour
     {
         isWarping = Input.GetKey(KeyToWarp);
 
-        if(Input.GetKeyUp(KeyToWarp)) {
-            
+        if (Input.GetKeyUp(KeyToWarp))
+        {
+            if (previousVelocities.Count > 0)
+                toWarp.velocity = 5 * previousVelocities[previousVelocities.Count - 1];
         }
     }
 
@@ -46,10 +48,15 @@ public class WarpStorage : MonoBehaviour
             if (previousVelocities.Count > stackSize)
                 previousVelocities.RemoveAt(0);
         }
-        else 
+        else
         {
+            if (previousPositions.Count < 1)
+                return;
+            if (previousVelocities.Count < 1)
+                return;
             toWarp.transform.position = previousPositions.Last();
             previousPositions.RemoveAt(previousPositions.Count - 1);
+            previousVelocities.RemoveAt(previousVelocities.Count - 1);
         }
     }
 }
