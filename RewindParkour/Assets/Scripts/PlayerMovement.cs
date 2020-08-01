@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,17 +28,14 @@ public class PlayerMovement : MonoBehaviour
         DoMovement();
     }
 
-    private Vector3 previousVelocity = Vector3.zero;
     private void DoMovement()
     {
-        Vector3 movementVector = (movementInput.x * transform.right + movementInput.z * transform.forward).normalized;
+        Vector3 movement = rb.velocity;
+        Vector3 movementVector = (movementInput.x * transform.right + movementInput.z * transform.forward).normalized * movementSpeed;
+        movement.x = movementVector.x;
+        movement.z = movementVector.z;
 
-        rb.velocity -= previousVelocity;
-        rb.velocity += movementVector * movementSpeed;
-
-        previousVelocity = movementVector * movementSpeed;
-
-        //rb.AddForce((movementInput.x * transform.right + movementInput.z * transform.forward).normalized * movementSpeed, ForceMode.Acceleration);
+        rb.velocity = movement;
     }
 
     private void GetInput()
