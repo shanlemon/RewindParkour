@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 9063246520573142095}
   - component: {fileID: 9063246520573142094}
   - component: {fileID: 9063246520573142089}
+  - component: {fileID: 2757235531569165401}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -415,7 +416,59 @@ MonoBehaviour:
   gunTip: {fileID: 9063246519488987519}
   camera: {fileID: 9063246519417671422}
   player: {fileID: 0}
-  maxDistance: 50
+  maxDistance: 100
+--- !u!114 &2757235531569165401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9063246520573142091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7163b1294928849aacec9e129273a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 9063246520573142089}
+  quality: 500
+  damper: 14
+  strength: 800
+  velocity: 15
+  waveCount: 3
+  waveHeight: 1
+  affectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.471238
+      outSlope: 7.471238
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.060294118
+      value: 0.4504717
+      inSlope: 3.4959314
+      outSlope: 3.4959314
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.47937518
+      outSlope: -0.47937518
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &8321282094913260604
 PrefabInstance:
   m_ObjectHideFlags: 0
