@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 8697892930404465754}
   - component: {fileID: 8697892930404465749}
   - component: {fileID: 8697892930404465758}
+  - component: {fileID: 7485899888935052868}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -291,15 +292,15 @@ MonoBehaviour:
   sensitivity: 250
   moveSpeed: 4500
   maxSpeed: 20
-  grounded: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4294967295
   counterMovement: 0.175
   maxSlopeAngle: 35
   slideForce: 400
   slideCounterMovement: 0.2
-  jumpForce: 550
+  jumpForce: 80
+  downwardsForce: 30
 --- !u!114 &8697892930404465758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,3 +321,16 @@ MonoBehaviour:
   spherePrefab: {fileID: 5726988125608708128, guid: 967a0f5af63980e44a914bf35bde4d3e, type: 3}
   spherePrefab2: {fileID: 355723696870647396, guid: 0be31900abde18442883c331bee44312, type: 3}
   previousPositions: []
+--- !u!114 &7485899888935052868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5231e0f23b495a459dec6148b5e67a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportKey: 114

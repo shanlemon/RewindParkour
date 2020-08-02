@@ -162,17 +162,37 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float maxJumpTime = .35f;
 	private float jumpTimer = 0f;
+	private float postGroundJumpLeniency = 1f;
+	private bool canJump = false;
+	private bool hasActivatedLeniencyCountdown = false;
 	private void CustomJump() {
+		bool hasJumped = false;
+		if (Grounded) {
+			canJump = true;
+			hasActivatedLeniencyCountdown = false;
+			hasJumped = true;
+		}
+
+		if (!Grounded && !JumpInput) {
+			if (!hasActivatedLeniencyCountdown) {
+				hasActivatedLeniencyCountdown = true;
+				Invoke(nameof(SetJumpLeniency), postGroundJumpLeniency);
+			}
+		}
+
 		if (!Grounded) {
-			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, .5f);
+			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, .25f);
 			orientation.rotation = lerpedDirection;
 		}
 
 		//initial jump force
-		if (Grounded && JumpInput) {
+		if (canJump && JumpInput) {
+
+			canJump = false;
 			Debug.Log("lmfao");
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
 			rb.AddForce(normalVector * jumpForce * .5f);
+			hasJumped = true;
 		}
 
 		//add force upwards for maxJumpTime if holding jump
@@ -180,7 +200,7 @@ public class PlayerMovement : MonoBehaviour {
 			jumpTimer = 0f;
 		bool isJumpTimer = jumpTimer < maxJumpTime;
 
-		if (JumpInput && isJumpTimer) {
+		if (JumpInput && isJumpTimer && hasJumped) {
 			jumpTimer += Time.deltaTime;
 
 			rb.AddForce(Vector2.up * jumpForce * .37f);
@@ -189,11 +209,14 @@ public class PlayerMovement : MonoBehaviour {
 
 
 		//extra gravity when not holding jump
-		if (!JumpInput && !Grounded) {
+		if (!JumpInput && !Grounded && !canJump) {
 			rb.AddForce(Vector3.down * downwardsForce);
 		}
 	}
 
+	private void SetJumpLeniency() {
+		canJump = false;
+	}
 
 	private void Jump() {
 		if (Grounded && readyToJump) {
