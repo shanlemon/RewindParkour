@@ -723,7 +723,7 @@ MonoBehaviour:
   gunTip: {fileID: 1939316389}
   camera: {fileID: 2144850212}
   player: {fileID: 1147045510}
-  maxDistance: 100
+  maxDistance: 50
 --- !u!114 &821492628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1187,6 +1187,7 @@ MonoBehaviour:
   rb: {fileID: 1147045512}
   pm: {fileID: 1147045511}
   spherePrefab: {fileID: 5726988125608708128, guid: 967a0f5af63980e44a914bf35bde4d3e, type: 3}
+  spherePrefab2: {fileID: 355723696870647396, guid: 0be31900abde18442883c331bee44312, type: 3}
   previousPositions: []
 --- !u!1 &1201242736
 GameObject:
@@ -2370,4 +2371,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warp: {fileID: 1147045516}
-  speed: 0.001
+  speed: 4

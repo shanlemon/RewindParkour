@@ -11,6 +11,7 @@ public class WarpPosition : MonoBehaviour
     [SerializeField] private Rigidbody rb = default;
     [SerializeField] private PlayerMovement pm = default;
     [SerializeField] private GameObject spherePrefab = default;
+    [SerializeField] private GameObject spherePrefab2 = default;
 
     private int warpStackSize;
 
@@ -57,6 +58,7 @@ public class WarpPosition : MonoBehaviour
             }
             
             customWarpDeltaTime = Mathf.Lerp(customWarpDeltaTime, customWarpDeltaTime / 1.2f, customWarpDeltaTime);
+            //customWarpDeltaTime = Mathf.Clamp(customWarpDeltaTime, 0.005f, customWarpDeltaTime);
             if (timer >= customWarpDeltaTime)
             {
                 timer = 0;
@@ -67,6 +69,10 @@ public class WarpPosition : MonoBehaviour
                 postWarpVelocity = -(WarpDirection) / customWarpDeltaTime;
                 previousPositions.RemoveAt(previousPositions.Count - 1);
             }
+        }
+        else
+        {
+            //Instantiate(spherePrefab2, transform.position, Quaternion.identity);
         }
     }
 
