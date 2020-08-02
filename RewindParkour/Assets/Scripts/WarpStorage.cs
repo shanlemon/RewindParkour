@@ -13,12 +13,11 @@ public class WarpStorage : MonoBehaviour
     [SerializeField] private KeyCode KeyToWarp = KeyCode.E;
     [SerializeField] private Rigidbody rb = default;
     [SerializeField] private PlayerMovement pm = default;
-    private Rigidbody rbToWarp = null;
+    [SerializeField] private GameObject spherePrefab = default;
 
     private int warpStackSize;
 
     public List<Vector3> previousPositions;
-    public List<Vector3> previousVelocities;
 
     public float WarpFillPercentage
     {
@@ -28,17 +27,19 @@ public class WarpStorage : MonoBehaviour
     void Start()
     {
         previousPositions = new List<Vector3>();
-        previousVelocities = new List<Vector3>();
-        Debug.Log(Time.fixedDeltaTime);
         warpStackSize = (int)(warpStorageTimeInSeconds * (1f / Time.fixedDeltaTime));
-        rbToWarp = GetComponent<Rigidbody>();
     }
 
 
     private bool isWarping = false;
+    private float timer = 0;
+
+    private float customWarpDeltaTime = 0.04f;
+
+    private Vector3 postWarpVelocity = Vector3.zero;
     void Update()
     {
-
+        timer += Time.deltaTime;
         if (isWarping && Input.GetKeyUp(KeyToWarp))
         {
             StopWarping();
@@ -47,6 +48,27 @@ public class WarpStorage : MonoBehaviour
         if (!isWarping && Input.GetKeyDown(KeyToWarp))
         {
             StartWarping();
+        }
+
+        if (isWarping)
+        {
+            if (previousPositions.Count < 1 )
+            {
+                StopWarping();
+                return;
+            }
+            
+            customWarpDeltaTime = Mathf.Lerp(customWarpDeltaTime, customWarpDeltaTime / 1.2f, customWarpDeltaTime);
+            if (timer >= customWarpDeltaTime)
+            {
+                timer = 0;
+                WarpMove();
+
+                Vector3 warpDirection = rb.transform.position - previousPositions.Last();
+
+                postWarpVelocity = -(warpDirection) / customWarpDeltaTime;
+                previousPositions.RemoveAt(previousPositions.Count - 1);
+            }
         }
     }
 
@@ -63,12 +85,14 @@ public class WarpStorage : MonoBehaviour
     }
 
     private void StopWarping() {
+        customWarpDeltaTime = 0.04f;
         // Use gravity
         rb.useGravity = true;
         pm.EnableMovement();
         isWarping = false;
-        if (previousVelocities.Count > 0)
-            rbToWarp.velocity = -postWarpspeedMultiplier * previousVelocities[previousVelocities.Count - 1].normalized * (warpStartVelocityMagnitude);
+        rb.velocity = postWarpVelocity;
+        // if (previousVelocities.Count > 0)
+        //     rbToWarp.velocity = -postWarpspeedMultiplier * previousVelocities[previousVelocities.Count - 1].normalized * (warpStartVelocityMagnitude);
     }
 
     private IEnumerator SlowDownTime(float time, float slowScale)
@@ -84,27 +108,17 @@ public class WarpStorage : MonoBehaviour
     {
         if (!isWarping)
         {
-            previousPositions.Add(rbToWarp.transform.position);
-            previousVelocities.Add(rbToWarp.velocity);
+            previousPositions.Add(rb.transform.position);
 
             if (previousPositions.Count > warpStackSize)
                 previousPositions.RemoveAt(0);
-            if (previousVelocities.Count > warpStackSize)
-                previousVelocities.RemoveAt(0);
         }
-        else
-        {
-            if (previousPositions.Count < 1 || previousVelocities.Count < 1)
-            {
-                StopWarping();
-                return;
-            }
+    }
 
-            rbToWarp.MovePosition(previousPositions.Last());
-
-            previousPositions.RemoveAt(previousPositions.Count - 1);
-            previousVelocities.RemoveAt(previousVelocities.Count - 1);
-        }
+    private void WarpMove() {
+        rb.velocity = Vector3.zero;
+        rb.MovePosition(previousPositions.Last());
+        Instantiate(spherePrefab, previousPositions.Last(), Quaternion.identity);
     }
 
 }

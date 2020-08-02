@@ -1188,8 +1188,8 @@ MonoBehaviour:
   KeyToWarp: 101
   rb: {fileID: 1147045512}
   pm: {fileID: 1147045511}
+  spherePrefab: {fileID: 5726988125608708128, guid: 967a0f5af63980e44a914bf35bde4d3e, type: 3}
   previousPositions: []
-  previousVelocities: []
 --- !u!1 &1201242736
 GameObject:
   m_ObjectHideFlags: 0
