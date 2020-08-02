@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (!Grounded) {
 			Quaternion lerpedDirection = Quaternion.Lerp(Quaternion.Euler(rb.velocity.normalized), playerCam.rotation, .25f);
-			rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
+			//rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
 		}
 
 		//initial jump force
