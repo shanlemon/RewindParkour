@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerFootstepSoundEmitter : MonoBehaviour
 {
     [SerializeField] private Sound footstepSound = default;
-    [SerializeField] private float stepInterval = default;
-    [SerializeField] private Rigidbody rb = default;
+    [SerializeField] private float speed = default;
     [SerializeField] private PlayerMovement pm = default;
-
 
     private float stepCycle;
     private float nextStep;
@@ -26,18 +24,18 @@ public class PlayerFootstepSoundEmitter : MonoBehaviour
 
     private void ProgressStepCycle()
     {
-        if (rb.velocity.magnitude > 0 && pm.Grounded)
+        if (pm.IsMoving && pm.Grounded)
         {
-            stepCycle += (rb.velocity.magnitude) * Time.fixedDeltaTime;
+            stepCycle += speed * Time.deltaTime;
         }
 
-        if (!(stepCycle > nextStep))
+        if (stepCycle <= 1/speed)
         {
             return;
         }
 
-        nextStep = stepCycle + stepInterval;
         PlayFootStepAudio();
+        stepCycle = 0;
     }
 
      private void PlayFootStepAudio()
