@@ -556,43 +556,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721829581}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &811357265 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8697892930404465751, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
-  m_PrefabInstance: {fileID: 8697892929403697874}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &811357266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8697892930404465749, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
-  m_PrefabInstance: {fileID: 8697892929403697874}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811357265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272d2d477edef8c49ad4b1e28ceaac6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &811357267 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8697892930404465754, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
-  m_PrefabInstance: {fileID: 8697892929403697874}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &811357272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811357265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf4c45b6b15bdc43ad63a9d67db8367, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepSound: {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
-  stepInterval: 5
-  rb: {fileID: 811357267}
-  pm: {fileID: 811357266}
 --- !u!1 &950596882
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +661,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8697892930404465758, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
   m_PrefabInstance: {fileID: 8697892929403697874}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811357265}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8a14d8f739e17540a4020b873a40451, type: 3}
