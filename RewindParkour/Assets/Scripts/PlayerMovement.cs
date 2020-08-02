@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour {
 	private float jumpCooldown = 0.25f;
 	public float jumpForce = 550f;
 	[SerializeField] private float downwardsForce = 550f;
-	private float tempDownwardsForce;
 
 
 	//Input
@@ -125,7 +124,8 @@ public class PlayerMovement : MonoBehaviour {
 		CounterMovement(x, y, mag);
 
 		//If holding jump && ready to jump, then jump
-		if (readyToJump && JumpInput) Jump();
+		//if (readyToJump && JumpInput) Jump();
+		CustomJump();
 
 		//Set max speed
 		float maxSpeed = this.maxSpeed;
@@ -158,16 +158,45 @@ public class PlayerMovement : MonoBehaviour {
 		rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
 		rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
 
+	}
+
+	private float maxJumpTime = .35f;
+	private float jumpTimer = 0f;
+	private void CustomJump() {
+		if (!Grounded) {
+			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, 1f);
+			orientation.rotation = lerpedDirection;
+		}
+
+		//initial jump force
+		if (Grounded && JumpInput) {
+			Debug.Log("lmfao");
+			rb.AddForce(Vector2.up * jumpForce * 1.5f);
+			rb.AddForce(normalVector * jumpForce * .5f);
+		}
+
+		//add force upwards for maxJumpTime if holding jump
+		if (Grounded)
+			jumpTimer = 0f;
+		bool isJumpTimer = jumpTimer < maxJumpTime;
+
+		if (JumpInput && isJumpTimer) {
+			jumpTimer += Time.deltaTime;
+
+			rb.AddForce(Vector2.up * jumpForce * .37f);
+			//rb.AddForce(normalVector * jumpForce * .5f);
+		}
+
+
 		//extra gravity when not holding jump
 		if (!JumpInput && !Grounded) {
 			rb.AddForce(Vector3.down * downwardsForce);
-			tempDownwardsForce = Mathf.Lerp(tempDownwardsForce, downwardsForce, .25f);
 		}
 	}
 
+
 	private void Jump() {
 		if (Grounded && readyToJump) {
-			tempDownwardsForce = downwardsForce * 6f;
 			readyToJump = false;
 
 			//Add jump forces
