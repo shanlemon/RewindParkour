@@ -181,8 +181,8 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		if (!Grounded) {
-			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, .25f);
-			orientation.rotation = lerpedDirection;
+			//Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, .25f);
+			//orientation.rotation = lerpedDirection;
 		}
 
 		//initial jump force
