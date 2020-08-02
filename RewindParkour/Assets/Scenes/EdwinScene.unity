@@ -1654,7 +1654,7 @@ PrefabInstance:
     - target: {fileID: 8697892930404465749, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
       propertyPath: playerCam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1240533567}
     - target: {fileID: 8697892930404465751, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2559,6 +2559,10 @@ PrefabInstance:
       propertyPath: warp
       value: 
       objectReference: {fileID: 2017309780}
+    - target: {fileID: 9063246520573142089, guid: 7888a124070c63b45a7760467d241a68, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2017309779}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7888a124070c63b45a7760467d241a68, type: 3}
 --- !u!4 &1240533567 stripped
