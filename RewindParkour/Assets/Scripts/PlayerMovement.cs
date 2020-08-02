@@ -189,7 +189,6 @@ public class PlayerMovement : MonoBehaviour {
 		if (canJump && JumpInput) {
 			hasJumped = true;
 			canJump = false;
-			Debug.Log("lmfao");
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
 			rb.AddForce(normalVector * jumpForce * .5f);
 			hasJumped = true;
@@ -211,6 +210,10 @@ public class PlayerMovement : MonoBehaviour {
 		//extra gravity when not holding jump
 		if (!JumpInput && !Grounded && !canJump) {
 			rb.AddForce(Vector3.down * downwardsForce);
+			if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit, 5f)) {
+				Debug.Log("OMEGLAUAL");
+				rb.AddForce(Vector3.down * downwardsForce);
+			}
 		}
 	}
 
