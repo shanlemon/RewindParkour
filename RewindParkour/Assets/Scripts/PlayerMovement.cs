@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	//Movement
 	public float moveSpeed = 4500;
 	public float maxSpeed = 20;
-	public bool grounded;
+	public bool Grounded { get; private set; }
 	public LayerMask whatIsGround;
 
 	public float counterMovement = 0.175f;
@@ -35,13 +35,18 @@ public class PlayerMovement : MonoBehaviour {
 	public float slideCounterMovement = 0.2f;
 
 	//Jumping
+	public bool JumpInput { get; private set; }
 	private bool readyToJump = true;
 	private float jumpCooldown = 0.25f;
 	public float jumpForce = 550f;
+	[SerializeField] private float downwardsForce = 550f;
+	private float tempDownwardsForce;
+
 
 	//Input
 	float x, y;
-	bool jumping, sprinting, crouching, disableMovement;
+	bool sprinting, crouching, disableMovement;
+
 
 	//Sliding
 	private Vector3 normalVector = Vector3.up;
@@ -68,13 +73,12 @@ public class PlayerMovement : MonoBehaviour {
 		Look();
 	}
 
-	public void DisableMovement()
-	{
+	public void DisableMovement() {
 		disableMovement = true;
 	}
 
-	public void EnableMovement()
-	{
+
+	public void EnableMovement() {
 		disableMovement = false;
 	}
 
@@ -84,7 +88,7 @@ public class PlayerMovement : MonoBehaviour {
 	private void MyInput() {
 		x = Input.GetAxisRaw("Horizontal");
 		y = Input.GetAxisRaw("Vertical");
-		jumping = Input.GetButton("Jump");
+		JumpInput = Input.GetButton("Jump");
 		crouching = Input.GetKey(KeyCode.LeftControl);
 
 		//Crouching
@@ -98,7 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 		transform.localScale = crouchScale;
 		transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
 		if (rb.velocity.magnitude > 0.5f) {
-			if (grounded) {
+			if (Grounded) {
 				rb.AddForce(orientation.transform.forward * slideForce);
 			}
 		}
@@ -121,13 +125,13 @@ public class PlayerMovement : MonoBehaviour {
 		CounterMovement(x, y, mag);
 
 		//If holding jump && ready to jump, then jump
-		if (readyToJump && jumping) Jump();
+		if (readyToJump && JumpInput) Jump();
 
 		//Set max speed
 		float maxSpeed = this.maxSpeed;
 
 		//If sliding down a ramp, add force down so player stays grounded and also builds speed
-		if (crouching && grounded && readyToJump) {
+		if (crouching && Grounded && readyToJump) {
 			rb.AddForce(Vector3.down * Time.deltaTime * 3000);
 			return;
 		}
@@ -142,21 +146,28 @@ public class PlayerMovement : MonoBehaviour {
 		float multiplier = 1f, multiplierV = 1f;
 
 		// Movement in air
-		if (!grounded) {
+		if (!Grounded) {
 			multiplier = 0.5f;
 			multiplierV = 0.5f;
 		}
 
 		// Movement while sliding
-		if (grounded && crouching) multiplierV = 0f;
+		if (Grounded && crouching) multiplierV = 0f;
 
 		//Apply forces to move player
 		rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
 		rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
+		//extra gravity when not holding jump
+		if (!JumpInput && !Grounded) {
+			rb.AddForce(Vector3.down * downwardsForce);
+			tempDownwardsForce = Mathf.Lerp(tempDownwardsForce, downwardsForce, .25f);
+		}
 	}
 
 	private void Jump() {
-		if (grounded && readyToJump) {
+		if (Grounded && readyToJump) {
+			tempDownwardsForce = downwardsForce * 6f;
 			readyToJump = false;
 
 			//Add jump forces
@@ -199,7 +210,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void CounterMovement(float x, float y, Vector2 mag) {
-		if (!grounded || jumping) return;
+		if (!Grounded || JumpInput) return;
 
 		//Slow down sliding
 		if (crouching) {
@@ -262,7 +273,7 @@ public class PlayerMovement : MonoBehaviour {
 			Vector3 normal = other.contacts[i].normal;
 			//FLOOR
 			if (IsFloor(normal)) {
-				grounded = true;
+				Grounded = true;
 				cancellingGrounded = false;
 				normalVector = normal;
 				CancelInvoke(nameof(StopGrounded));
@@ -278,7 +289,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void StopGrounded() {
-		grounded = false;
+		Grounded = false;
 	}
 
 
