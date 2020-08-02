@@ -523,6 +523,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepSound: {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
-  stepInterval: 5
-  rb: {fileID: 8697892930404465754}
+  speed: 2
   pm: {fileID: 8697892930404465749}
