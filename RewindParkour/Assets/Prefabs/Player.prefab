@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 8697892930404465749}
   - component: {fileID: 8697892930404465758}
   - component: {fileID: 7485899888935052868}
+  - component: {fileID: 811357272}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -509,3 +510,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportKey: 114
+--- !u!114 &811357272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf4c45b6b15bdc43ad63a9d67db8367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSound: {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
+  stepInterval: 5
+  rb: {fileID: 8697892930404465754}
+  pm: {fileID: 8697892930404465749}
