@@ -187,7 +187,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		//initial jump force
 		if (canJump && JumpInput) {
-
+			hasJumped = true;
 			canJump = false;
 			Debug.Log("lmfao");
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
