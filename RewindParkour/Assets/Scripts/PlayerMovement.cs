@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//Input
 	float x, y;
-	bool jumping, sprinting, crouching;
+	bool jumping, sprinting, crouching, disableMovement;
 
 	//Sliding
 	private Vector3 normalVector = Vector3.up;
@@ -58,12 +58,23 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	private void FixedUpdate() {
-		Movement();
+		if (!disableMovement)
+			Movement();
 	}
 
 	private void Update() {
 		MyInput();
 		Look();
+	}
+
+	public void DisableMovement()
+	{
+		disableMovement = true;
+	}
+
+	public void EnableMovement()
+	{
+		disableMovement = false;
 	}
 
 	/// <summary>
