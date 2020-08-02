@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd83f67737d3f34a9861d8cb54b7f2c, type: 3}
+  m_Name: Footsteps
+  m_EditorClassIdentifier: 
+  clips:
+  - AudioClip: {fileID: 8300000, guid: 34413f77f303e3643aa985e3be5c0bd8, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: 3d0ff66a4bc9d5945b2c9563c91c6714, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: 2b63851e515974145a0f8ac8a60f5006, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: 9f306747a44396944a8c08fa93093f40, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: aa27565db9dc79c4798904939d59afca, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: b03e6ad29d8cb4046ae3503006ffc540, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: 89026b9bafeb54644a8e2acaaa8b485a, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 0}
+    volume: 0
+    pitch: 0
+  - AudioClip: {fileID: 8300000, guid: 6aa60d746666c644c9635dee47e7b6f9, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: c50a6380861abfa42a6c190afd7a54f6, type: 3}
+    volume: 1
+    pitch: 1
+  - AudioClip: {fileID: 8300000, guid: 51fcc48d7dcdf3b4cb3ff3725a98a86d, type: 3}
+    volume: 1
+    pitch: 1
+  loop: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  source: {fileID: 0}
