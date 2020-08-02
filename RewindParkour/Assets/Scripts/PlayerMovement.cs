@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool JumpInput { get; private set; }
 	private bool readyToJump = true;
 	private float jumpCooldown = 0.25f;
-	public float jumpForce = 550f;
-	[SerializeField] private float downwardsForce = 550f;
+	public float jumpForce = 80f;
+	[SerializeField] private float downwardsForce = 20f;
 
 
 	//Input
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float jumpTimer = 0f;
 	private void CustomJump() {
 		if (!Grounded) {
-			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, 1f);
+			Quaternion lerpedDirection = Quaternion.Lerp(orientation.rotation, playerCam.rotation, .5f);
 			orientation.rotation = lerpedDirection;
 		}
 
