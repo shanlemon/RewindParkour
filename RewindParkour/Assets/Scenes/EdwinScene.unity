@@ -1991,7 +1991,7 @@ GameObject:
   - component: {fileID: 914795276}
   - component: {fileID: 914795275}
   m_Layer: 0
-  m_Name: CameraA
+  m_Name: PortalCameraA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2256,7 +2256,7 @@ GameObject:
   - component: {fileID: 990621050}
   - component: {fileID: 990621049}
   m_Layer: 0
-  m_Name: CameraB
+  m_Name: PortalCameraB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2933,7 +2933,7 @@ GameObject:
   - component: {fileID: 1386145506}
   - component: {fileID: 1386145507}
   m_Layer: 0
-  m_Name: ColliderPlane
+  m_Name: ColliderPlaneA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3603,7 +3603,7 @@ GameObject:
   - component: {fileID: 1702420585}
   - component: {fileID: 1702420584}
   m_Layer: 0
-  m_Name: 'ColliderPlane '
+  m_Name: ColliderPlaneB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

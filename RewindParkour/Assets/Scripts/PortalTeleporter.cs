@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+/// <summary>
+/// Teleports the player from one portal to the other.
+/// </summary>
 public class PortalTeleporter : MonoBehaviour
 {
+    [SerializeField] private Transform receiver = default; 
+
+    // Collider plane on other portal
     [SerializeField] private Transform player = default;
-    [SerializeField] private Transform receiver = default;
     
     private bool playerIsOverLapping = false;
 
@@ -40,6 +45,14 @@ public class PortalTeleporter : MonoBehaviour
         if (other.tag == "Player")
         {
             playerIsOverLapping = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerIsOverLapping = false;
         }
     }
 }

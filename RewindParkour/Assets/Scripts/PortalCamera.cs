@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+/// <summary>
+/// Moves the camera on the other portal based on the player's position.
+/// </summary
 public class PortalCamera : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera = default;
@@ -10,7 +13,7 @@ public class PortalCamera : MonoBehaviour
     [SerializeField] private Transform otherPortal = default;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // Move camera based on player's camera
         Vector3 playerOffsetFromPortal = playerCamera.position - otherPortal.position;
