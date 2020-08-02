@@ -31,7 +31,10 @@ public class WarpStorage : MonoBehaviour
     }
 
 
+    public bool IsWarping => isWarping;
     private bool isWarping = false;
+
+    public Vector3 WarpDirection { private set; get; }
     private float timer = 0;
 
     private float customWarpDeltaTime = 0.04f;
