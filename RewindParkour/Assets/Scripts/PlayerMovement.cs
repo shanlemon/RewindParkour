@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	//Assingables
 	public Transform playerCam;
 	public Transform orientation;
+	[SerializeField] private WarpPosition warpPosition;
 
 	//Other
 	private Rigidbody rb;
@@ -179,6 +180,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float desiredX;
 	private void Look() {
+		//if (warpPosition.IsWarping) return;
+
 		float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
 		float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
 

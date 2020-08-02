@@ -7,6 +7,7 @@ using System;
 public class FPSCamera : MonoBehaviour {
  
 	[SerializeField] private Transform cameraTransform;
+	[SerializeField] private WarpPosition warpPosition;
 	public float sensitivityX = 15F;
 	public float sensitivityY = 15F;
  
@@ -20,6 +21,7 @@ public class FPSCamera : MonoBehaviour {
  
 	void Update ()
 	{
+		
 		rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
 		rotationX += Input.GetAxis("Mouse X") * sensitivityX;
 

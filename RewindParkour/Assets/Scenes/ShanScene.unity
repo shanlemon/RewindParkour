@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 2144850212}
   orientation: {fileID: 142859529}
+  warpPosition: {fileID: 1147045516}
   sensitivity: 250
   moveSpeed: 4500
   maxSpeed: 20
@@ -1181,9 +1182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warpStorageTimeInSeconds: 5
-  postWarpspeedMultiplier: 1
-  slowMotionTimeInSeconds: 0.5
-  slowMotionScale: 0.5
   minimumFillToWarp: 0.2
   KeyToWarp: 101
   rb: {fileID: 1147045512}
@@ -2322,6 +2320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2144850212}
   - component: {fileID: 2144850211}
+  - component: {fileID: 2144850213}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2358,3 +2357,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2144850213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144850210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22047e621d582c44c99e1e075612b57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warp: {fileID: 1147045516}
+  speed: 0.001

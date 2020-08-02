@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarpStorage : MonoBehaviour
+public class WarpPosition : MonoBehaviour
 {
     [SerializeField] private float warpStorageTimeInSeconds = 5f;
-    [SerializeField] private float postWarpspeedMultiplier = 1.4f;
-    [SerializeField] private float slowMotionTimeInSeconds = 2f;
-    [SerializeField] private float slowMotionScale = 0.5f;
     [SerializeField] private float minimumFillToWarp = 0.2f;
     [SerializeField] private KeyCode KeyToWarp = KeyCode.E;
     [SerializeField] private Rigidbody rb = default;
@@ -31,29 +28,27 @@ public class WarpStorage : MonoBehaviour
     }
 
 
-    public bool IsWarping => isWarping;
-    private bool isWarping = false;
+    public bool IsWarping {private set; get;}
 
     public Vector3 WarpDirection { private set; get; }
     private float timer = 0;
-
     private float customWarpDeltaTime = 0.04f;
 
     private Vector3 postWarpVelocity = Vector3.zero;
     void Update()
     {
         timer += Time.deltaTime;
-        if (isWarping && Input.GetKeyUp(KeyToWarp))
+        if (IsWarping && Input.GetKeyUp(KeyToWarp))
         {
             StopWarping();
         }
 
-        if (!isWarping && Input.GetKeyDown(KeyToWarp))
+        if (!IsWarping && Input.GetKeyDown(KeyToWarp))
         {
             StartWarping();
         }
 
-        if (isWarping)
+        if (IsWarping)
         {
             if (previousPositions.Count < 1 )
             {
@@ -67,9 +62,9 @@ public class WarpStorage : MonoBehaviour
                 timer = 0;
                 WarpMove();
 
-                Vector3 warpDirection = rb.transform.position - previousPositions.Last();
+                WarpDirection = (rb.transform.position - previousPositions.Last()).normalized;
 
-                postWarpVelocity = -(warpDirection) / customWarpDeltaTime;
+                postWarpVelocity = -(WarpDirection) / customWarpDeltaTime;
                 previousPositions.RemoveAt(previousPositions.Count - 1);
             }
         }
@@ -82,9 +77,8 @@ public class WarpStorage : MonoBehaviour
             return;
         rb.useGravity = false;
         pm.DisableMovement();
-        isWarping = true;
+        IsWarping = true;
         warpStartVelocityMagnitude = rb.velocity.magnitude;
-        //StartCoroutine(SlowDownTime(slowMotionTimeInSeconds, slowMotionScale));
     }
 
     private void StopWarping() {
@@ -92,24 +86,13 @@ public class WarpStorage : MonoBehaviour
         // Use gravity
         rb.useGravity = true;
         pm.EnableMovement();
-        isWarping = false;
+        IsWarping = false;
         rb.velocity = postWarpVelocity;
-        // if (previousVelocities.Count > 0)
-        //     rbToWarp.velocity = -postWarpspeedMultiplier * previousVelocities[previousVelocities.Count - 1].normalized * (warpStartVelocityMagnitude);
-    }
-
-    private IEnumerator SlowDownTime(float time, float slowScale)
-    {
-        // Slow down time
-        Time.timeScale = slowScale;
-        yield return new WaitForSeconds(time);
-        // Bring it back
-        Time.timeScale = 1;
     }
 
     void FixedUpdate()
     {
-        if (!isWarping)
+        if (!IsWarping)
         {
             previousPositions.Add(rb.transform.position);
 
