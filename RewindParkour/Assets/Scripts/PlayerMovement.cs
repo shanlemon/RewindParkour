@@ -165,12 +165,16 @@ public class PlayerMovement : MonoBehaviour {
 	private float postGroundJumpLeniency = 1f;
 	private bool canJump = false;
 	private bool hasActivatedLeniencyCountdown = false;
+	private float timeSinceLastJump = 100000f;
+	private bool hasJumped = false;
 	private void CustomJump() {
-		bool hasJumped = false;
-		if (Grounded) {
+		bool hasJumpCooldownPassed = (timeSinceLastJump > jumpCooldown);
+
+		if (Grounded && hasJumpCooldownPassed) {
+			Debug.Log("grounded");
 			canJump = true;
 			hasActivatedLeniencyCountdown = false;
-			hasJumped = true;
+			hasJumped = false;
 		}
 
 		if (!Grounded && !JumpInput) {
@@ -180,41 +184,54 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if (!Grounded) {
-			Quaternion lerpedDirection = Quaternion.Lerp(Quaternion.Euler(rb.velocity.normalized), playerCam.rotation, .25f);
-			//rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
-		}
 
 		//initial jump force
-		if (canJump && JumpInput) {
+		if (canJump && JumpInput && hasJumpCooldownPassed) {
+			//rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+			Debug.Log("initial force");
 			hasJumped = true;
 			canJump = false;
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
 			rb.AddForce(normalVector * jumpForce * .5f);
-			hasJumped = true;
+			timeSinceLastJump = 0f;
 		}
 
 		//add force upwards for maxJumpTime if holding jump
-		if (Grounded)
-			jumpTimer = 0f;
-		bool isJumpTimer = jumpTimer < maxJumpTime;
+		if (hasJumped)
+			Debug.Log("hasJumped");
 
-		if (JumpInput && isJumpTimer && hasJumped) {
+		if (JumpInput && hasJumped && !hasJumpCooldownPassed) {
 			jumpTimer += Time.deltaTime;
-
-			rb.AddForce(Vector2.up * jumpForce * .37f);
-			//rb.AddForce(normalVector * jumpForce * .5f);
+			Debug.Log("upwards force");
+			rb.AddForce(Vector2.up * jumpForce * .37f * .37f);
 		}
+
+		//faking shit
+		/*
+		if (!Grounded && !canJump) {
+			if (timeSinceLastJump < 0.5f)
+				return;
+
+			if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit, 5f)) {
+				rb.AddForce(Vector3.down * downwardsForce);
+			}
+		}
+		if (!Grounded) {
+			if (timeSinceLastJump < 0.5f)
+				return;
+			rb.AddForce(playerCam.forward * 5f);
+			//rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
+		}
+		*/
 
 
 		//extra gravity when not holding jump
 		if (!JumpInput && !Grounded && !canJump) {
 			rb.AddForce(Vector3.down * downwardsForce);
-			if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit, 5f)) {
-				Debug.Log("OMEGLAUAL");
-				rb.AddForce(Vector3.down * downwardsForce);
-			}
 		}
+
+
+		timeSinceLastJump += Time.deltaTime;
 	}
 
 	private void SetJumpLeniency() {
