@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 9063246520573142089}
-  hook: {fileID: 0}
+  hook: {fileID: 5816612114237829247}
   quality: 500
   damper: 14
   strength: 800
