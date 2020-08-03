@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 8697892930404465758}
   - component: {fileID: 7485899888935052868}
   - component: {fileID: 811357272}
+  - component: {fileID: 8971122711800227733}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -525,3 +526,20 @@ MonoBehaviour:
   footstepSound: {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
   speed: 2
   pm: {fileID: 8697892930404465749}
+--- !u!114 &8971122711800227733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d950a0e6c22e4448a1f918ff3b7106b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 8697892930404465749}
+  rigidbody: {fileID: 8697892930404465754}
+  windSound: {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
+  minVolume: 0.05
+  maxVolume: 0.15
