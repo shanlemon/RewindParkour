@@ -1028,6 +1028,7 @@ GameObject:
   - component: {fileID: 1147045513}
   - component: {fileID: 1147045512}
   - component: {fileID: 1147045511}
+  - component: {fileID: 1147045517}
   - component: {fileID: 1147045516}
   - component: {fileID: 2258095343853968534}
   m_Layer: 0
@@ -1180,6 +1181,25 @@ MonoBehaviour:
   spherePrefab: {fileID: 5726988125608708128, guid: 967a0f5af63980e44a914bf35bde4d3e, type: 3}
   spherePrefab2: {fileID: 355723696870647396, guid: 0be31900abde18442883c331bee44312, type: 3}
   previousPositions: []
+--- !u!114 &1147045517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147045509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d42bc65a0d2694db949f9262a59604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1147045511}
+  jumpForce: 180
+  upwardsForce: 29.6
+  downwardsForce: 20
+  jumpCooldown: 0.25
+  timeToApplyUpwardsForce: 0.125
+  postGroundJumpLeniency: 0.15
 --- !u!1 &1201242736
 GameObject:
   m_ObjectHideFlags: 0

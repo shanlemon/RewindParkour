@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float moveSpeed = 4500;
 	public float maxSpeed = 20;
 	public bool Grounded { get; private set; }
-	public bool IsMoving {get {return x != 0 || y != 0;}}
+	public bool IsMoving { get { return x != 0 || y != 0; } }
 	public LayerMask whatIsGround;
 
 	public float counterMovement = 0.175f;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	//Sliding
-	private Vector3 normalVector = Vector3.up;
+	public Vector3 NormalVector { get; private set; } = Vector3.up;
 	private Vector3 wallNormalVector;
 
 	void Awake() {
@@ -126,7 +126,6 @@ public class PlayerMovement : MonoBehaviour {
 
 		//If holding jump && ready to jump, then jump
 		//if (readyToJump && JumpInput) Jump();
-		CustomJump();
 
 		//Set max speed
 		float maxSpeed = this.maxSpeed;
@@ -161,90 +160,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	private float maxJumpTime = .35f;
-	private float jumpTimer = 0f;
-	private float postGroundJumpLeniency = .15f;
-	private bool canJump = false;
-	private bool hasActivatedLeniencyCountdown = false;
-	private float timeSinceLastJump = 100000f;
-	private bool hasJumped = false;
-	private void CustomJump() {
-		bool hasJumpCooldownPassed = (timeSinceLastJump > jumpCooldown);
-
-		if (Grounded && hasJumpCooldownPassed) {
-			Debug.Log("grounded");
-			canJump = true;
-			hasActivatedLeniencyCountdown = false;
-			hasJumped = false;
-		}
-
-		if (!Grounded && !JumpInput) {
-			if (!hasActivatedLeniencyCountdown) {
-				hasActivatedLeniencyCountdown = true;
-				Invoke(nameof(SetJumpLeniency), postGroundJumpLeniency);
-			}
-		}
-
-		if (canJump)
-			Debug.Log("can jump");
-
-		//initial jump force
-		if (canJump && JumpInput && hasJumpCooldownPassed) {
-			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-			Debug.Log("initial force");
-			hasJumped = true;
-			canJump = false;
-			rb.AddForce(Vector2.up * jumpForce * 1.5f);
-			rb.AddForce(normalVector * jumpForce * .5f);
-			timeSinceLastJump = 0f;
-		}
-
-		//add force upwards for maxJumpTime if holding jump
-		if (JumpInput && hasJumped && !(timeSinceLastJump > jumpCooldown / 2)) {
-			jumpTimer += Time.deltaTime;
-			Debug.Log("upwards force");
-			rb.AddForce(Vector2.up * jumpForce * .37f * .37f);
-		}
-
-		//faking shit
-		/*
-		if (!Grounded && !canJump) {
-			if (timeSinceLastJump < 0.5f)
-				return;
-
-			if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit, 5f)) {
-				rb.AddForce(Vector3.down * downwardsForce);
-			}
-		}
-		if (!Grounded) {
-			if (timeSinceLastJump < 0.5f)
-				return;
-			rb.AddForce(playerCam.forward * 5f);
-			//rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
-		}
-		*/
-
-
-		//extra gravity when not holding jump
-		if (!JumpInput && !Grounded && !canJump) {
-			rb.AddForce(Vector3.down * downwardsForce);
-		}
-
-
-		timeSinceLastJump += Time.deltaTime;
-	}
-
-	private void SetJumpLeniency() {
-		canJump = false;
-	}
-
 	private void Jump() {
 		if (Grounded && readyToJump) {
 			readyToJump = false;
 
 			//Add jump forces
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
-			rb.AddForce(normalVector * jumpForce * 0.5f);
+			rb.AddForce(NormalVector * jumpForce * 0.5f);
 
 			//If jumping while falling, reset y velocity.
 			Vector3 vel = rb.velocity;
@@ -347,7 +269,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (IsFloor(normal)) {
 				Grounded = true;
 				cancellingGrounded = false;
-				normalVector = normal;
+				NormalVector = normal;
 				CancelInvoke(nameof(StopGrounded));
 			}
 		}
