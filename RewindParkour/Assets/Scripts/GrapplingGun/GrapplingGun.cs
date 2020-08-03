@@ -65,6 +65,7 @@ public class GrapplingGun : MonoBehaviour
     private void StopGrapple()
     {
         Destroy(joint);
+
     }
 
     public bool IsGrappling()

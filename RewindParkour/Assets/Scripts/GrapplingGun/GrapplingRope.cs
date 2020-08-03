@@ -6,6 +6,9 @@ using UnityEngine;
 public class GrapplingRope : MonoBehaviour
 {
     [SerializeField] private GrapplingGun gun = default;
+    [SerializeField] private GameObject hook = default;
+
+    [Header("Rope animation variables")]
     [SerializeField] private int quality = default;
     [SerializeField] private float damper = default;
     [SerializeField] private float strength = default;
@@ -18,6 +21,9 @@ public class GrapplingRope : MonoBehaviour
     private Vector3 currentGrapplePos = default;
     private Spring spring = default;
 
+    // Getters
+    public GameObject Hook => hook;
+
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -28,6 +34,7 @@ public class GrapplingRope : MonoBehaviour
     private void LateUpdate()
     {
         DrawRope();
+        
     }
 
 
@@ -37,6 +44,7 @@ public class GrapplingRope : MonoBehaviour
         if (!gun.IsGrappling())
         {
             currentGrapplePos = gun.GunTip.position;
+            hook.transform.localPosition = Vector3.zero;
             spring.Reset();
             if (lineRenderer.positionCount > 0)
                 lineRenderer.positionCount = 0;
@@ -67,5 +75,7 @@ public class GrapplingRope : MonoBehaviour
 
             lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, currentGrapplePos, delta) + offset);
         }
+
+        hook.transform.position = grapplePoint;
     }
 }
