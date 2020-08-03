@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayerFootstepSoundEmitter : MonoBehaviour
 {
     [SerializeField] private Sound footstepSound = default;
-    [SerializeField] private float stepInterval = default;
     [SerializeField] private float speed = default;
-    [SerializeField] private Rigidbody rb = default;
+    [SerializeField] private PlayerMovement pm = default;
 
     private float stepCycle;
     private float nextStep;
@@ -20,30 +19,29 @@ public class PlayerFootstepSoundEmitter : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        ProgressStepCycle(speed);
+        ProgressStepCycle();
     }
 
-    private void ProgressStepCycle(float speed)
+    private void ProgressStepCycle()
     {
-        if (rb.velocity.sqrMagnitude > 0)
+        if (pm.IsMoving && pm.Grounded)
         {
-            stepCycle += (rb.velocity.magnitude + (speed)) *
-                         Time.fixedDeltaTime;
+            stepCycle += speed * Time.deltaTime;
         }
 
-        if (!(stepCycle > nextStep))
+        if (stepCycle <= 1/speed)
         {
             return;
         }
 
-        nextStep = stepCycle + stepInterval;
         PlayFootStepAudio();
+        stepCycle = 0;
     }
 
      private void PlayFootStepAudio()
     {
         // pick & play a random footstep sound from the array,
-        Managers.AudioManager.PlayOneShotAtLocation(footstepSound.name, gameObject);
+        Managers.AudioManager.PlayOneShot(footstepSound.name);
 
     }
 

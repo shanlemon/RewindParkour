@@ -88,5 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073ad5175c854ee43ae20eecb8b5a530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
-  audioMixerGroup: {fileID: 0}
+  sounds:
+  - {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
+  - {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
+  audioMixerGroup: {fileID: 24300002, guid: 6e542249cc9bfb94ba292f45c18a312c, type: 2}

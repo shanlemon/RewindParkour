@@ -11,17 +11,12 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private Transform player = default;
     [SerializeField] private float maxDistance = 100f;
 
-    private LineRenderer lineRenderer = default;
     private Vector3 grapplePoint = default;
     private SpringJoint joint = default;
 
     // Getters
     public Vector3 GrapplePoint => grapplePoint;
-
-    private void Awake()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-    }
+    public Transform GunTip => gunTip;
 
     private void Update()
     { 
@@ -35,11 +30,6 @@ public class GrapplingGun : MonoBehaviour
         {
             StopGrapple();
         }
-    }
-
-    private void LateUpdate()
-    {
-        DrawRope();
     }
 
     /// <summary>
@@ -66,21 +56,7 @@ public class GrapplingGun : MonoBehaviour
             joint.spring = 10f;
             joint.damper = 2f;
             joint.massScale = 4.5f;
-
-            lineRenderer.positionCount = 2;
         }
-    }
-
-    private void DrawRope()
-    {
-        // Not grappling so don't draw
-        if (!joint)
-        {
-            return;
-        }
-
-        lineRenderer.SetPosition(index: 0, gunTip.position);
-        lineRenderer.SetPosition(index: 1, grapplePoint);
     }
 
     /// <summary>
@@ -88,7 +64,6 @@ public class GrapplingGun : MonoBehaviour
     /// </summary>
     private void StopGrapple()
     {
-        lineRenderer.positionCount = 0;
         Destroy(joint);
     }
 
