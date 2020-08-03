@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float maxJumpTime = .35f;
 	private float jumpTimer = 0f;
-	private float postGroundJumpLeniency = 1f;
+	private float postGroundJumpLeniency = .15f;
 	private bool canJump = false;
 	private bool hasActivatedLeniencyCountdown = false;
 	private float timeSinceLastJump = 100000f;
@@ -184,10 +184,12 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
+		if (canJump)
+			Debug.Log("can jump");
 
 		//initial jump force
 		if (canJump && JumpInput && hasJumpCooldownPassed) {
-			//rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 			Debug.Log("initial force");
 			hasJumped = true;
 			canJump = false;
@@ -197,10 +199,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		//add force upwards for maxJumpTime if holding jump
-		if (hasJumped)
-			Debug.Log("hasJumped");
-
-		if (JumpInput && hasJumped && !hasJumpCooldownPassed) {
+		if (JumpInput && hasJumped && !(timeSinceLastJump > jumpCooldown / 2)) {
 			jumpTimer += Time.deltaTime;
 			Debug.Log("upwards force");
 			rb.AddForce(Vector2.up * jumpForce * .37f * .37f);
