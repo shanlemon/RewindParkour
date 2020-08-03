@@ -36,7 +36,6 @@ public class PlayerJump : MonoBehaviour {
 
 		//when grounded
 		if (Grounded && hasJumpCooldownPassed) {
-			Debug.Log("grounded");
 			canJump = true;
 			hasActivatedLeniencyCountdown = false;
 			hasJumped = false;
