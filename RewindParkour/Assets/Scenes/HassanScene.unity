@@ -542,7 +542,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100008, guid: 47616bd0cda748d4cbedcfc908506b9d, type: 3}
+  - {fileID: 2100000, guid: 83343309aba419848aa7ba8cfa8f7a40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1124,6 +1124,8 @@ GameObject:
   - component: {fileID: 1147045512}
   - component: {fileID: 1147045511}
   - component: {fileID: 1147045517}
+  - component: {fileID: 1147045519}
+  - component: {fileID: 1147045518}
   - component: {fileID: 1147045516}
   - component: {fileID: 2258095343853968534}
   m_Layer: 0
@@ -1166,7 +1168,7 @@ MonoBehaviour:
   orientation: {fileID: 142859529}
   warpPosition: {fileID: 1147045516}
   sensitivity: 250
-  moveSpeed: 2000
+  moveSpeed: 1000
   maxSpeed: 20
   whatIsGround:
     serializedVersion: 2
@@ -1289,12 +1291,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1147045511}
-  jumpForce: 180
+  input: {fileID: 1147045519}
+  jumpForce: 250
   upwardsForce: 29.6
   downwardsForce: 20
   jumpCooldown: 0.25
   timeToApplyUpwardsForce: 0.125
   postGroundJumpLeniency: 0.15
+--- !u!114 &1147045518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147045509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be2f59ac2aa00b40b971f729a490feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1147045511}
+  input: {fileID: 1147045519}
+--- !u!114 &1147045519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147045509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09f0c3dbaa38cc47b7faf84c9bbf435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1201242736
 GameObject:
   m_ObjectHideFlags: 0

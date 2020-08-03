@@ -16,6 +16,7 @@ public class TeleportToOnKeyPress : MonoBehaviour {
 	private void Update() {
 		if (Input.GetKeyDown(teleportKey)) {
 			rb.position = savedPosition;
+			rb.velocity = Vector3.zero;
 		}
 	}
 }

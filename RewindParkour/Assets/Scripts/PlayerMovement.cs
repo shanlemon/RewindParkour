@@ -21,8 +21,9 @@ public class PlayerMovement : MonoBehaviour {
 	//Movement
 	public float moveSpeed = 4500;
 	public float maxSpeed = 20;
+	public bool JumpInput { get; private set; }
 	public bool Grounded { get; private set; }
-	public bool IsMoving { get { return x != 0 || y != 0; } }
+	public bool IsMoving { get { return XInput != 0 || YInput != 0; } }
 	public LayerMask whatIsGround;
 
 	public float counterMovement = 0.175f;
@@ -36,7 +37,6 @@ public class PlayerMovement : MonoBehaviour {
 	public float slideCounterMovement = 0.2f;
 
 	//Jumping
-	public bool JumpInput { get; private set; }
 	private bool readyToJump = true;
 	private float jumpCooldown = 0.25f;
 	public float jumpForce = 80f;
@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	//Input
-	float x, y;
+	private float XInput;
+	private float YInput;
 	bool sprinting, crouching, disableMovement;
 
 
@@ -86,10 +87,8 @@ public class PlayerMovement : MonoBehaviour {
 	/// Find user input. Should put this in its own class but im lazy
 	/// </summary>
 	private void MyInput() {
-		x = Input.GetAxisRaw("Horizontal");
-		y = Input.GetAxisRaw("Vertical");
-		JumpInput = Input.GetButton("Jump");
-		crouching = Input.GetKey(KeyCode.LeftControl);
+		XInput = Input.GetAxis("Horizontal");
+		YInput = Input.GetAxis("Vertical");
 
 		//Crouching
 		if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -115,14 +114,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Movement() {
 		//Extra gravity
-		rb.AddForce(Vector3.down * Time.deltaTime * 10);
 
 		//Find actual velocity relative to where player is looking
 		Vector2 mag = FindVelRelativeToLook();
 		float xMag = mag.x, yMag = mag.y;
 
 		//Counteract sliding and sloppy movement
-		CounterMovement(x, y, mag);
+		CounterMovement(XInput, YInput, mag);
 
 		//If holding jump && ready to jump, then jump
 		//if (readyToJump && JumpInput) Jump();
@@ -137,10 +135,10 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		//If speed is larger than maxspeed, cancel out the input so you don't go over max speed
-		if (x > 0 && xMag > maxSpeed) x = 0;
-		if (x < 0 && xMag < -maxSpeed) x = 0;
-		if (y > 0 && yMag > maxSpeed) y = 0;
-		if (y < 0 && yMag < -maxSpeed) y = 0;
+		if (XInput > 0 && xMag > maxSpeed) XInput = 0;
+		if (XInput < 0 && xMag < -maxSpeed) XInput = 0;
+		if (YInput > 0 && yMag > maxSpeed) YInput = 0;
+		if (YInput < 0 && yMag < -maxSpeed) YInput = 0;
 
 		//Some multipliers
 		float multiplier = 1f, multiplierV = 1f;
@@ -155,8 +153,8 @@ public class PlayerMovement : MonoBehaviour {
 		if (Grounded && crouching) multiplierV = 0f;
 
 		//Apply forces to move player
-		rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-		rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+		rb.AddForce(orientation.transform.forward * YInput * moveSpeed * Time.deltaTime * multiplier * multiplierV);
+		rb.AddForce(orientation.transform.right * XInput * moveSpeed * Time.deltaTime * multiplier);
 
 	}
 

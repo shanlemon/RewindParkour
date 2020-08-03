@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour {
 
 	[SerializeField] private PlayerMovement player = default;
+	[SerializeField] private PlayerInput input = default;
 	private Rigidbody rb = default;
 
 	//Forces
@@ -23,7 +24,7 @@ public class PlayerJump : MonoBehaviour {
 	private bool canJump = false;
 
 	private bool Grounded => player.Grounded;
-	private bool JumpInput => player.JumpInput;
+	private bool JumpInput => input.JumpInput;
 	private Vector3 NormalVector => player.NormalVector;
 
 	private void Start() {
@@ -55,6 +56,7 @@ public class PlayerJump : MonoBehaviour {
 			hasJumped = true;
 			canJump = false;
 
+			//reset y velocity when you jump
 			rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
 			rb.AddForce(Vector2.up * jumpForce * 1.5f);
@@ -66,29 +68,13 @@ public class PlayerJump : MonoBehaviour {
 			rb.AddForce(Vector2.up * upwardsForce);
 		}
 
-		//faking shit
-		/*
-		if (!Grounded && !canJump) {
-			if (timeSinceLastJump < 0.5f)
-				return;
-
-			if (Physics.Raycast(rb.position, Vector3.down, out RaycastHit hit, 5f)) {
-				rb.AddForce(Vector3.down * downwardsForce);
-			}
-		}
-		if (!Grounded) {
-			if (timeSinceLastJump < 0.5f)
-				return;
-			rb.AddForce(playerCam.forward * 5f);
-			//rb.velocity = lerpedDirection.eulerAngles * rb.velocity.magnitude;
-		}
-		*/
-
 
 		//extra gravity when not holding jump
 		if (!JumpInput && !Grounded && !canJump) {
 			rb.AddForce(Vector3.down * downwardsForce);
 		}
+		// was in player movmenet script for some reason
+		rb.AddForce(Vector3.down * Time.fixedDeltaTime * 10);
 
 		timeSinceLastJump += Time.deltaTime;
 	}
