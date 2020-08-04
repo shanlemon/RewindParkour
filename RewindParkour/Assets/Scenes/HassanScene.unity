@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147045509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d2d477edef8c49ad4b1e28ceaac6f, type: 3}
   m_Name: 
@@ -1298,6 +1298,7 @@ MonoBehaviour:
   jumpCooldown: 0.25
   timeToApplyUpwardsForce: 0.125
   postGroundJumpLeniency: 0.15
+  hasJumped: 0
 --- !u!114 &1147045518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,6 +1313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1147045511}
   input: {fileID: 1147045519}
+  moveSpeed: 80
+  turnSpeed: 10
 --- !u!114 &1147045519
 MonoBehaviour:
   m_ObjectHideFlags: 0

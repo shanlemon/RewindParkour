@@ -8,27 +8,43 @@ public class PlayerLocomotion : MonoBehaviour {
 	[SerializeField] private PlayerInput input = default;
 	private Rigidbody rb = default;
 
-	private float moveSpeed = 3500;
-	private float frictionForce = 500;
+	[SerializeField] private float moveSpeed = 3500;
+	[SerializeField] private float turnSpeed = 10f;
 
 	private float XInput => input.XInput;
 	private float YInput => input.YInput;
-	private Transform Orientation => player.orientation;
+
+	private Vector3 movementDirection;
+
+	private bool IsMoveInput => !((XInput == 0) && (YInput == 0));
 
 	private void Start() {
 		rb = GetComponent<Rigidbody>();
+		movementDirection = rb.transform.forward;
 	}
 
 	void FixedUpdate() {
-		//rb.AddForce(Orientation.forward * YInput * moveSpeed * Time.fixedDeltaTime);
-		//rb.AddForce(Orientation.right * XInput * moveSpeed * Time.fixedDeltaTime);
+		if (IsMoveInput) {
+			movementDirection = CalculateMovementDirection();
 
-		Vector3 velocityDirection = rb.velocity.normalized;
+			rb.AddForce(movementDirection * moveSpeed);
+		}
+
+	}
+
+	public Vector3 CalculateMovementDirection() {
+		Vector3 inputDirection = rb.transform.right * XInput + rb.transform.forward * YInput;
+		inputDirection = inputDirection.normalized;
+
+		float xDirection = Mathf.Lerp(movementDirection.x, inputDirection.x, Time.fixedDeltaTime * turnSpeed);
+		float zDirection = Mathf.Lerp(movementDirection.z, inputDirection.z, Time.fixedDeltaTime * turnSpeed);
+
+		return new Vector3(xDirection, 0f, zDirection);
 	}
 
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(rb.position, rb.position + rb.velocity.normalized * 5);
+		Gizmos.DrawLine(rb.position, rb.position + movementDirection * 5);
 	}
 
 }
