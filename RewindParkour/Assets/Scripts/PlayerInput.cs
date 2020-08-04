@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour {
 	public Vector3 NormalVector { get; private set; }
 
 	[SerializeField] private LayerMask whatIsGround;
+	public LayerMask WhatIsGround => whatIsGround;
 
 
 	// Start is called before the first frame update
