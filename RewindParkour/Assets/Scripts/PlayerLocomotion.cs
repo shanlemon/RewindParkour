@@ -30,6 +30,10 @@ public class PlayerLocomotion : MonoBehaviour {
 			rb.AddForce(movementDirection * moveSpeed);
 		}
 
+		float oldYVelocity = rb.velocity.y;
+		rb.velocity /= 1.4f;
+		rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
+
 	}
 
 	public Vector3 CalculateMovementDirection() {
