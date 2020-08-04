@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd83f67737d3f34a9861d8cb54b7f2c, type: 3}
-  m_Name: GrappleShot
+  m_Script: {fileID: 11500000, guid: 3d2081f0a9f031f4980896274ae01d7a, type: 3}
+  m_Name: Test1
   m_EditorClassIdentifier: 
-  clips:
-  - AudioClip: {fileID: 8300000, guid: e2b3173357ef7524cad7fbeb45b83b96, type: 3}
-    volume: 1.5
-    pitch: 1
-  loop: 0
-  fadeInTime: 0
-  fadeOutTime: 0
-  source: {fileID: 0}
+  levelName: Test 1
