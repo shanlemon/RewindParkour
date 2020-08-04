@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour {
 
 	[SerializeField] private PlayerInput input = default;
+	[SerializeField] private Transform camera = default;
 	private Rigidbody rb = default;
 
 	[SerializeField] private float moveSpeed = 3500;
@@ -36,7 +37,7 @@ public class PlayerLocomotion : MonoBehaviour {
 	}
 
 	public Vector3 CalculateMovementDirection() {
-		Vector3 inputDirection = rb.transform.right * XInput + rb.transform.forward * YInput;
+		Vector3 inputDirection = camera.right * XInput + camera.forward * YInput;
 		inputDirection = inputDirection.normalized;
 
 		float xDirection = Mathf.Lerp(movementDirection.x, inputDirection.x, Time.fixedDeltaTime * turnSpeed);
