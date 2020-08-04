@@ -8,17 +8,12 @@ public class WindAudioPlayer : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement= default;
     [SerializeField] private Rigidbody rigidbody = default;
     [SerializeField] private Sound windSound = default;
-    [SerializeField] private float minVolume = .1f, maxVolume = .25f;
+    [SerializeField] private float minVolume = .1f, maxVolume = .25f, startVelocityMagnitude = 30, maxVelocity = 120;
 
     private bool playingClip;
     // private bool isMovingInAir {get {return !playerMovement.Grounded && (playerMovement.IsMoving || rigidbody.velocity.magnitude > 0);}}
-    private bool isMovingInAir {get {return !playerMovement.Grounded &&  rigidbody.velocity.magnitude > 30;}}
+    private bool isMovingInAir {get {return !playerMovement.Grounded &&  rigidbody.velocity.magnitude > startVelocityMagnitude;}}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,7 +33,7 @@ public class WindAudioPlayer : MonoBehaviour
         if (playingClip)
         {
             Debug.Log(rigidbody.velocity.magnitude + " " + playerMovement.maxSpeed);
-            windSound.clips[0].volume = Mathf.Lerp(minVolume, maxVolume, rigidbody.velocity.magnitude / 95);
+            windSound.source.volume = Mathf.Lerp(minVolume, maxVolume, rigidbody.velocity.magnitude / maxVelocity);
         }
 
 
