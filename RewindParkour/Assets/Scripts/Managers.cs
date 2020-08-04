@@ -14,6 +14,9 @@ public class Managers : MonoBehaviour
     [SerializeField] private AudioManager audioManager = default;
     public static AudioManager AudioManager => instance?.audioManager;
 
+    [SerializeField] private Timer timeManager = default;
+    public static Timer TimeManager => instance?.timeManager;
+
 
 
     private void Awake() {
