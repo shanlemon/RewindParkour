@@ -1165,20 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 2144850212}
-  orientation: {fileID: 0}
-  warpPosition: {fileID: 0}
   sensitivity: 250
-  moveSpeed: 0
-  maxSpeed: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  counterMovement: 0
-  maxSlopeAngle: 0
-  slideForce: 0
-  slideCounterMovement: 0
-  jumpForce: 0
-  downwardsForce: 0
 --- !u!54 &1147045512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1314,8 +1301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1147045519}
   camera: {fileID: 2144850212}
-  acceleration: 1500
-  maxSpeed: 4
+  acceleration: 600
+  maxSpeed: 16
   turnSpeed: 10
 --- !u!114 &1147045519
 MonoBehaviour:
