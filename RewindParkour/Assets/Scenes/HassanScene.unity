@@ -1291,12 +1291,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 1147045519}
+  rb: {fileID: 1147045512}
   jumpForce: 250
   upwardsForce: 29.6
   downwardsForce: 20
   jumpCooldown: 0.25
   timeToApplyUpwardsForce: 0.125
   postGroundJumpLeniency: 0.15
+  aboveGroundDistanceToJump: 2
   hasJumped: 0
 --- !u!114 &1147045518
 MonoBehaviour:

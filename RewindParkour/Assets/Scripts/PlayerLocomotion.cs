@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour {
@@ -33,16 +34,17 @@ public class PlayerLocomotion : MonoBehaviour {
 			rb.AddForce(movementDirection * acceleration, ForceMode.Acceleration);
 
 			if (MovementVelocity.magnitude > maxSpeed) {
-				rb.velocity = MovementVelocity.normalized * (float)maxSpeed + YVelocity;
+				rb.velocity = MovementVelocity.normalized * maxSpeed / 120f + YVelocity;
 			}
+
+			Debug.Log("movement velocity" + MovementVelocity.magnitude);
+			Debug.Log("normal velocity" + rb.velocity.magnitude);
+			Debug.Log("y velocity" + YVelocity.magnitude);
 		}
 
 		if (!IsMoveInput) {
 			movementDirection = CalculateMovementDirection(0, 0);
 
-			float oldYVelocity = rb.velocity.y;
-			//rb.velocity /= 2f;
-			//rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
 			rb.velocity = MovementVelocity / 2f + YVelocity;
 		}
 	}
@@ -58,8 +60,11 @@ public class PlayerLocomotion : MonoBehaviour {
 	}
 
 	void OnDrawGizmosSelected() {
-		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(rb.position, rb.position + movementDirection * 5);
+		if (EditorApplication.isPlaying) {
+
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine(rb.position, rb.position + movementDirection * 5);
+		}
 	}
 
 }
