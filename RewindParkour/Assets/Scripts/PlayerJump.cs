@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour {
 
-	[SerializeField] private PlayerMovement player = default;
 	[SerializeField] private PlayerInput input = default;
 	private Rigidbody rb = default;
 
@@ -23,9 +22,9 @@ public class PlayerJump : MonoBehaviour {
 	public bool hasJumped = false;
 	private bool canJump = false;
 
-	private bool Grounded => player.Grounded;
+	private bool Grounded => input.Grounded;
 	private bool JumpInput => input.JumpInput;
-	private Vector3 NormalVector => player.NormalVector;
+	private Vector3 NormalVector => input.NormalVector;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody>();

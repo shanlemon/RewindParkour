@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour {
 
-	[SerializeField] private PlayerMovement player = default;
 	[SerializeField] private PlayerInput input = default;
 	private Rigidbody rb = default;
 
