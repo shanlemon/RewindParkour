@@ -8,7 +8,8 @@ public class PlayerLocomotion : MonoBehaviour {
 	[SerializeField] private Transform camera = default;
 	private Rigidbody rb = default;
 
-	[SerializeField] private float moveSpeed = 3500;
+	[SerializeField] private float acceleration = 3500;
+	[SerializeField] private float maxSpeed = 15f;
 	[SerializeField] private float turnSpeed = 10f;
 
 	private float XInput => input.XInput;
@@ -17,6 +18,7 @@ public class PlayerLocomotion : MonoBehaviour {
 	private Vector3 movementDirection;
 
 	private bool IsMoveInput => !((XInput == 0) && (YInput == 0));
+	private Vector3 MovementVelocity => new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
 	private void Start() {
 		rb = GetComponent<Rigidbody>();
@@ -25,19 +27,26 @@ public class PlayerLocomotion : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (IsMoveInput) {
-			movementDirection = CalculateMovementDirection();
+			movementDirection = CalculateMovementDirection(XInput, YInput);
 
-			rb.AddForce(movementDirection * moveSpeed);
+			rb.AddForce(movementDirection * acceleration, ForceMode.Acceleration);
+
+			if (MovementVelocity.magnitude > maxSpeed) {
+				rb.velocity = rb.velocity.normalized * maxSpeed;
+			}
 		}
 
-		float oldYVelocity = rb.velocity.y;
-		rb.velocity /= 1.4f;
-		rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
+		if (!IsMoveInput) {
+			movementDirection = CalculateMovementDirection(0, 0);
 
+			float oldYVelocity = rb.velocity.y;
+			rb.velocity /= 2f;
+			rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
+		}
 	}
 
-	public Vector3 CalculateMovementDirection() {
-		Vector3 inputDirection = camera.right * XInput + camera.forward * YInput;
+	public Vector3 CalculateMovementDirection(float xInput, float yInput) {
+		Vector3 inputDirection = camera.right * xInput + camera.forward * yInput;
 		inputDirection = inputDirection.normalized;
 
 		float xDirection = Mathf.Lerp(movementDirection.x, inputDirection.x, Time.fixedDeltaTime * turnSpeed);
