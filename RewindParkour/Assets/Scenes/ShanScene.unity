@@ -171,47 +171,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &172038342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9063246520573142091, guid: 7888a124070c63b45a7760467d241a68, type: 3}
-  m_PrefabInstance: {fileID: 9063246519766376410}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &172038343 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9063246520573142088, guid: 7888a124070c63b45a7760467d241a68, type: 3}
   m_PrefabInstance: {fileID: 9063246519766376410}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &172038345 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9063246520573142089, guid: 7888a124070c63b45a7760467d241a68, type: 3}
-  m_PrefabInstance: {fileID: 9063246519766376410}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172038342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf5502a9e04376548aa445a84710173a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &172038348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172038342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a19d81ccaa8be40bd33c8cc4681e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  range: 100
-  impactForce: 30
-  fireRate: 15
-  grapplingGun: {fileID: 172038345}
-  camera: {fileID: 2144850212}
-  muzzleFlash: {fileID: 1502444671}
-  impactEffect: {fileID: 6553487048692320948, guid: 4cff4a0c039a68740b66eaccc22c7de5, type: 3}
 --- !u!1 &206665597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,11 +1586,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472264915}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!198 &1502444671 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3252920774831522470, guid: cf0798db38dc4e94087aa4cc92024779, type: 3}
-  m_PrefabInstance: {fileID: 3252920774186450649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1908605834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,10 +2468,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 172038348, guid: 7888a124070c63b45a7760467d241a68, type: 3}
+      propertyPath: gunshotSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 8967fbc6631740a43b1033e3a0895eb4, type: 2}
     - target: {fileID: 2757235531569165401, guid: 7888a124070c63b45a7760467d241a68, type: 3}
       propertyPath: hook
       value: 
       objectReference: {fileID: 810693788}
+    - target: {fileID: 9063246518851806042, guid: 7888a124070c63b45a7760467d241a68, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9063246519417671416, guid: 7888a124070c63b45a7760467d241a68, type: 3}
       propertyPath: m_Name
       value: Camera

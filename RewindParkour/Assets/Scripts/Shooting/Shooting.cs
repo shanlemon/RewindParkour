@@ -11,8 +11,9 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Transform camera;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject impactEffect;
+    [SerializeField] private Sound gunshotSound;
 
-    private float nextTimeToFire = 0f;
+    private float nextTimeToFire = .25f;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,7 @@ public class Shooting : MonoBehaviour
     {
         Debug.Log("SHOOT");
         muzzleFlash.Play();
+        Managers.AudioManager.PlayOneShot(gunshotSound.name);
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, range))
         {
