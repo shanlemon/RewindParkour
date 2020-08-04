@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
 	public float XInput { get; private set; }
 	public float YInput { get; private set; }
-	public bool JumpInput { get; private set; }
+	public bool JumpInputHeld { get; private set; }
+	public bool JumpInputDown { get; private set; }
 
 	public bool Grounded { get; private set; }
 	public bool IsMoving => (XInput != 0) && (YInput != 0);
@@ -21,12 +22,27 @@ public class PlayerInput : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
+	private float jumpInputDownTime = 0.15f;
+	private bool hasInvokedJumpDownTimer = false;
 	void Update() {
 		XInput = Input.GetAxisRaw("Horizontal");
 		YInput = Input.GetAxisRaw("Vertical");
-		JumpInput = Input.GetButton("Jump");
+		JumpInputHeld = Input.GetButton("Jump");
+		if (Input.GetButtonDown("Jump")) {
+			JumpInputDown = true;
+		} else {
+			if (!hasInvokedJumpDownTimer) {
+				hasInvokedJumpDownTimer = true;
+				Invoke(nameof(ResetJumpDown), jumpInputDownTime);
+			}
+		}
 	}
+
+	private void ResetJumpDown() {
+		JumpInputDown = false;
+		hasInvokedJumpDownTimer = false;
+	}
+
 
 	private readonly float maxSlopeAngle = 35f;
 	private bool IsFloor(Vector3 v) {

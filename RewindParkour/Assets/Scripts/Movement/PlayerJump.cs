@@ -26,7 +26,8 @@ public class PlayerJump : MonoBehaviour {
 	private bool canJump = false;
 
 	private bool Grounded => input.Grounded;
-	private bool JumpInput => input.JumpInput;
+	private bool JumpInputHeld => input.JumpInputHeld;
+	private bool JumpInputDown => input.JumpInputDown;
 	private Vector3 NormalVector => input.NormalVector;
 
 	// Update is called once per frame
@@ -41,7 +42,7 @@ public class PlayerJump : MonoBehaviour {
 		}
 
 		//set jump leniency when in air
-		if (!Grounded && !JumpInput) {
+		if (!Grounded && !JumpInputHeld) {
 			if (!hasActivatedLeniencyCountdown) {
 				hasActivatedLeniencyCountdown = true;
 				Invoke(nameof(SetJumpLeniency), postGroundJumpLeniency);
@@ -50,21 +51,21 @@ public class PlayerJump : MonoBehaviour {
 
 		//allow jump if player is certain distance above ground
 		if (Physics.Raycast(rb.position, Vector3.down, aboveGroundDistanceToJump, input.WhatIsGround)) {
-			if (JumpInput && hasJumpCooldownPassed)
+			if (JumpInputDown && hasJumpCooldownPassed)
 				InitialJumpForce();
 			// else, do a normal jump
-		} else if (canJump && JumpInput && hasJumpCooldownPassed) {
+		} else if (canJump && JumpInputDown && hasJumpCooldownPassed) {
 			InitialJumpForce();
 		}
 
 		//add force upwards for amount if holding jump
-		if (JumpInput && hasJumped && !(timeSinceLastJump > timeToApplyUpwardsForce)) {
+		if (JumpInputHeld && hasJumped && !(timeSinceLastJump > timeToApplyUpwardsForce)) {
 			rb.AddForce(Vector2.up * upwardsForce);
 		}
 
 
 		//extra gravity when not holding jump
-		if (!JumpInput && !Grounded && !canJump) {
+		if (!JumpInputHeld && !Grounded && !canJump) {
 			rb.AddForce(Vector3.down * downwardsForce);
 		}
 		// was in player movmenet script for some reason
