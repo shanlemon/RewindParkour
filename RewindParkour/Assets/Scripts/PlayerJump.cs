@@ -20,7 +20,7 @@ public class PlayerJump : MonoBehaviour {
 
 	private float timeSinceLastJump = 100000f;
 	private bool hasActivatedLeniencyCountdown = false;
-	private bool hasJumped = false;
+	public bool hasJumped = false;
 	private bool canJump = false;
 
 	private bool Grounded => player.Grounded;

@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour {
 	private float sensMultiplier = 1f;
 
 	//Movement
+	private PlayerJump playerJump;
 	public float moveSpeed = 4500;
 	public float maxSpeed = 20;
-	public bool JumpInput { get; private set; }
 	public bool Grounded { get; private set; }
 	public bool IsMoving { get { return XInput != 0 || YInput != 0; } }
 	public LayerMask whatIsGround;
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Awake() {
 		rb = GetComponent<Rigidbody>();
+		playerJump = GetComponent<PlayerJump>();
 	}
 
 	void Start() {
@@ -158,29 +159,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	private void Jump() {
-		if (Grounded && readyToJump) {
-			readyToJump = false;
-
-			//Add jump forces
-			rb.AddForce(Vector2.up * jumpForce * 1.5f);
-			rb.AddForce(NormalVector * jumpForce * 0.5f);
-
-			//If jumping while falling, reset y velocity.
-			Vector3 vel = rb.velocity;
-			if (rb.velocity.y < 0.5f)
-				rb.velocity = new Vector3(vel.x, 0, vel.z);
-			else if (rb.velocity.y > 0)
-				rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
-
-			Invoke(nameof(ResetJump), jumpCooldown);
-		}
-	}
-
-	private void ResetJump() {
-		readyToJump = true;
-	}
-
 	private float desiredX;
 	private void Look() {
 		//if (warpPosition.IsWarping) return;
@@ -202,7 +180,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void CounterMovement(float x, float y, Vector2 mag) {
-		if (!Grounded || JumpInput) return;
+		if (!Grounded || playerJump.hasJumped) return;
 
 		//Slow down sliding
 		if (crouching) {
