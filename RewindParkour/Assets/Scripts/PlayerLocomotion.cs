@@ -19,6 +19,7 @@ public class PlayerLocomotion : MonoBehaviour {
 
 	private bool IsMoveInput => !((XInput == 0) && (YInput == 0));
 	private Vector3 MovementVelocity => new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+	private Vector3 YVelocity => new Vector3(0f, rb.velocity.y, 0);
 
 	private void Start() {
 		rb = GetComponent<Rigidbody>();
@@ -32,7 +33,7 @@ public class PlayerLocomotion : MonoBehaviour {
 			rb.AddForce(movementDirection * acceleration, ForceMode.Acceleration);
 
 			if (MovementVelocity.magnitude > maxSpeed) {
-				rb.velocity = rb.velocity.normalized * maxSpeed;
+				rb.velocity = MovementVelocity.normalized * maxSpeed + YVelocity;
 			}
 		}
 
@@ -40,8 +41,9 @@ public class PlayerLocomotion : MonoBehaviour {
 			movementDirection = CalculateMovementDirection(0, 0);
 
 			float oldYVelocity = rb.velocity.y;
-			rb.velocity /= 2f;
-			rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
+			//rb.velocity /= 2f;
+			//rb.velocity = new Vector3(rb.velocity.x, oldYVelocity, rb.velocity.z);
+			rb.velocity = MovementVelocity / 2f + YVelocity;
 		}
 	}
 
