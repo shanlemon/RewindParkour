@@ -36,10 +36,6 @@ public class PlayerLocomotion : MonoBehaviour {
 			if (MovementVelocity.magnitude > maxSpeed) {
 				rb.velocity = MovementVelocity.normalized * maxSpeed / 120f + YVelocity;
 			}
-
-			Debug.Log("movement velocity" + MovementVelocity.magnitude);
-			Debug.Log("normal velocity" + rb.velocity.magnitude);
-			Debug.Log("y velocity" + YVelocity.magnitude);
 		}
 
 		if (!IsMoveInput) {
