@@ -13,6 +13,8 @@ public class PlayerLocomotion : MonoBehaviour {
 	[SerializeField] private float maxSpeed = 15f;
 	[SerializeField] private float turnSpeed = 10f;
 
+	public float MaxSpeed => maxSpeed;
+
 	private float XInput => input.XInput;
 	private float YInput => input.YInput;
 
