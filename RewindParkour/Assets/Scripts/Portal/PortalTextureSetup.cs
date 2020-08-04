@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Setups the material and textures for the portals. Currently on the 
-/// GameManager but should probably be moved onto one of the portals in a pair.
+/// Setups the material and textures for the portals. 
 /// </summary>
 public class PortalTextureSetup : MonoBehaviour
 {

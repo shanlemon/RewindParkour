@@ -17,6 +17,9 @@ public class Managers : MonoBehaviour
     [SerializeField] private Timer timeManager = default;
     public static Timer TimeManager => instance?.timeManager;
 
+    [SerializeField] private GameManager gameManager = default;
+    public static GameManager GameManager => instance?.gameManager;
+
 
 
     private void Awake() {

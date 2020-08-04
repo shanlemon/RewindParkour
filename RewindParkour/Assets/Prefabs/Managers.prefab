@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioManager: {fileID: 6461511517669629897}
   timeManager: {fileID: 6882795283172624012}
+  gameManager: {fileID: 6923361582997587019}
 --- !u!1 &7915906645410195944
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +142,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8967fbc6631740a43b1033e3a0895eb4, type: 2}
   - {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
   audioMixerGroup: {fileID: 24300002, guid: 6e542249cc9bfb94ba292f45c18a312c, type: 2}
+--- !u!114 &6923361582997587019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015914188717921619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ede3fbcbf4577747aceb68b30acba72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3154986460937384922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,8 +209,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6257247383356794502, guid: bba06ae232d728f45bd259798272e46c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bba06ae232d728f45bd259798272e46c, type: 3}
+--- !u!1 &9015914188717921619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6257247383356794505, guid: bba06ae232d728f45bd259798272e46c, type: 3}
+  m_PrefabInstance: {fileID: 3154986460937384922}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9015914188717921629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6257247383356794503, guid: bba06ae232d728f45bd259798272e46c, type: 3}

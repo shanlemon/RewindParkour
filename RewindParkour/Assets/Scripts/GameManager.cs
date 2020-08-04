@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Timer timer = default;
+    public TriggerPad CurrTarget { get; set; }
 
     public Level CurrLevel { get; set; }
 
