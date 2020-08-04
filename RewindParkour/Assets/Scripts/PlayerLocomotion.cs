@@ -33,7 +33,7 @@ public class PlayerLocomotion : MonoBehaviour {
 			rb.AddForce(movementDirection * acceleration, ForceMode.Acceleration);
 
 			if (MovementVelocity.magnitude > maxSpeed) {
-				rb.velocity = MovementVelocity.normalized * maxSpeed + YVelocity;
+				rb.velocity = MovementVelocity.normalized * (float)maxSpeed + YVelocity;
 			}
 		}
 
