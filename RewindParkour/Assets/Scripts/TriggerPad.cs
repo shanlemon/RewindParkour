@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class TriggerPad : MonoBehaviour
 {
+    [SerializeField] private bool isEndPad = default;
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // Player has left a starting trigger pad
+        if (other.CompareTag("Player") && !isEndPad)
         {
             Managers.TimeManager.StartTimer();
         }
@@ -14,7 +17,8 @@ public class TriggerPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // Player has entered an end trigger pad
+        if (other.CompareTag("Player") && isEndPad)
         {
             Managers.TimeManager.StopTimer();
         }
