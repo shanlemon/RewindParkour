@@ -9,11 +9,10 @@ public class PlayerLocomotion : MonoBehaviour {
 	[SerializeField] private Transform camera = default;
 	private Rigidbody rb = default;
 
-	[SerializeField] private float acceleration = 10f;
-	[SerializeField] private float maxSpeed = 15f;
+	[SerializeField] public float Acceleration = 10f;
+	[SerializeField] public float MaxSpeed = 15f;
 	[SerializeField] private float turnSpeed = 10f;
 
-	public float MaxSpeed => maxSpeed;
 
 	private float XInput => input.XInput;
 	private float YInput => input.YInput;
@@ -33,10 +32,10 @@ public class PlayerLocomotion : MonoBehaviour {
 		if (IsMoveInput) {
 			movementDirection = CalculateMovementDirection(XInput, YInput);
 
-			rb.AddForce(movementDirection * acceleration, ForceMode.VelocityChange);
+			rb.AddForce(movementDirection * Acceleration, ForceMode.VelocityChange);
 
-			if (MovementVelocity.magnitude > maxSpeed) {
-				rb.velocity = MovementVelocity.normalized * maxSpeed / 120f + YVelocity;
+			if (MovementVelocity.magnitude > MaxSpeed) {
+				rb.velocity = MovementVelocity.normalized * MaxSpeed / 120f + YVelocity;
 			}
 		}
 
