@@ -9,7 +9,7 @@ public class PlayerLocomotion : MonoBehaviour {
 	[SerializeField] private Transform camera = default;
 	private Rigidbody rb = default;
 
-	[SerializeField] private float acceleration = 3500;
+	[SerializeField] private float acceleration = 10f;
 	[SerializeField] private float maxSpeed = 15f;
 	[SerializeField] private float turnSpeed = 10f;
 
@@ -33,7 +33,7 @@ public class PlayerLocomotion : MonoBehaviour {
 		if (IsMoveInput) {
 			movementDirection = CalculateMovementDirection(XInput, YInput);
 
-			rb.AddForce(movementDirection * acceleration, ForceMode.Acceleration);
+			rb.AddForce(movementDirection * acceleration, ForceMode.VelocityChange);
 
 			if (MovementVelocity.magnitude > maxSpeed) {
 				rb.velocity = MovementVelocity.normalized * maxSpeed / 120f + YVelocity;

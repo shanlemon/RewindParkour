@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1147045519}
   camera: {fileID: 2144850212}
-  acceleration: 600
+  acceleration: 10
   maxSpeed: 16
   turnSpeed: 10
 --- !u!114 &1147045519
