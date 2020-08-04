@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5633921097076566605}
   - component: {fileID: 8488203852989370228}
   - component: {fileID: 4449476631113937683}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1239022204455699691}
   - component: {fileID: 7783774155240305703}
   - component: {fileID: 33806909091825612}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 8697892929099133773}
   - component: {fileID: 8697892929099133772}
   - component: {fileID: 8697892929099133775}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697892929277978587}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697892930053412605}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,9 @@ GameObject:
   - component: {fileID: 7485899888935052868}
   - component: {fileID: 811357272}
   - component: {fileID: 8971122711800227733}
-  m_Layer: 0
+  - component: {fileID: 755472439}
+  - component: {fileID: 755472440}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -467,12 +469,12 @@ MonoBehaviour:
   orientation: {fileID: 8697892929277978587}
   warpPosition: {fileID: 8697892930404465758}
   sensitivity: 250
-  moveSpeed: 4500
+  moveSpeed: 3500
   maxSpeed: 20
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  counterMovement: 0.175
+  counterMovement: 0.5
   maxSlopeAngle: 35
   slideForce: 400
   slideCounterMovement: 0.2
@@ -542,4 +544,39 @@ MonoBehaviour:
   rigidbody: {fileID: 8697892930404465754}
   windSound: {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
   minVolume: 0.05
-  maxVolume: 0.15
+  maxVolume: 0.1
+  startVelocityMagnitude: 30
+  maxVelocity: 120
+--- !u!114 &755472439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09f0c3dbaa38cc47b7faf84c9bbf435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &755472440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d42bc65a0d2694db949f9262a59604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8697892930404465749}
+  input: {fileID: 755472439}
+  jumpForce: 250
+  upwardsForce: 30
+  downwardsForce: 20
+  jumpCooldown: 0.25
+  timeToApplyUpwardsForce: 0.125
+  postGroundJumpLeniency: 0.15
+  hasJumped: 0
