@@ -30,31 +30,26 @@ public class PlayerJump : MonoBehaviour {
 	private bool JumpInputDown => input.JumpInputDown;
 	private Vector3 NormalVector => input.NormalVector;
 
+	private bool HasJumpCooldownPassed => timeSinceLastJump > jumpCooldown;
 	// Update is called once per frame
 	void FixedUpdate() {
-		bool hasJumpCooldownPassed = (timeSinceLastJump > jumpCooldown);
-
 		//when grounded
-		if (Grounded && hasJumpCooldownPassed) {
+		if (Grounded && HasJumpCooldownPassed) {
 			canJump = true;
 			hasActivatedLeniencyCountdown = false;
 			hasJumped = false;
 		}
 
+		bool isAboveGround = Physics.Raycast(rb.position, Vector3.down, aboveGroundDistanceToJump, input.WhatIsGround);
 		//set jump leniency when in air
-		if (!Grounded && !JumpInputHeld) {
+		if ((!Grounded && !isAboveGround) && !JumpInputHeld) {
 			if (!hasActivatedLeniencyCountdown) {
 				hasActivatedLeniencyCountdown = true;
 				Invoke(nameof(SetJumpLeniency), postGroundJumpLeniency);
 			}
 		}
 
-		//allow jump if player is certain distance above ground
-		if (Physics.Raycast(rb.position, Vector3.down, aboveGroundDistanceToJump, input.WhatIsGround)) {
-			if (JumpInputDown && hasJumpCooldownPassed)
-				InitialJumpForce();
-			// else, do a normal jump
-		} else if (canJump && JumpInputDown && hasJumpCooldownPassed) {
+		if (canJump && JumpInputDown && HasJumpCooldownPassed) {
 			InitialJumpForce();
 		}
 
@@ -75,6 +70,7 @@ public class PlayerJump : MonoBehaviour {
 	}
 
 	private void InitialJumpForce() {
+		Debug.Log("jump");
 		timeSinceLastJump = 0f;
 		hasJumped = true;
 		canJump = false;
