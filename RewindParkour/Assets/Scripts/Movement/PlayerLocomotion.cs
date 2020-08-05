@@ -57,11 +57,8 @@ public class PlayerLocomotion : MonoBehaviour {
 	}
 
 	void OnDrawGizmosSelected() {
-		if (EditorApplication.isPlaying) {
-
-			Gizmos.color = Color.blue;
-			Gizmos.DrawLine(rb.position, rb.position + movementDirection * 5);
-		}
+		Gizmos.color = Color.blue;
+		Gizmos.DrawLine(rb.position, rb.position + movementDirection * 5);
 	}
 
 }
