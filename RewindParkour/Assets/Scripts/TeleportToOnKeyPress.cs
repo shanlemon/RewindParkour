@@ -17,7 +17,6 @@ public class TeleportToOnKeyPress : MonoBehaviour {
 		if (Input.GetKeyDown(teleportKey)) {
 			rb.position = savedPosition;
 			rb.velocity = Vector3.zero;
-			PlayerMomentumController.Instance.Reset();
 		}
 	}
 }
