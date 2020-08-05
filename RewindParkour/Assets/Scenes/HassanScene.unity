@@ -2083,8 +2083,8 @@ MonoBehaviour:
   downwardsForce: 20
   jumpCooldown: 0.175
   timeToApplyUpwardsForce: 0.125
-  postGroundJumpLeniency: 0.15
-  aboveGroundDistanceToJump: 3
+  postGroundJumpLeniency: 0.2
+  aboveGroundDistanceToJump: 2
   hasJumped: 0
 --- !u!114 &1147045518
 MonoBehaviour:

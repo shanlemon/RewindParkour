@@ -25,6 +25,7 @@ public class PlayerJump : MonoBehaviour {
 	public bool hasJumped = false;
 	private bool canJump = false;
 
+	private bool IsAboveGround => Physics.Raycast(rb.position, Vector3.down, aboveGroundDistanceToJump, input.WhatIsGround);
 	private bool Grounded => input.Grounded;
 	private bool JumpInputHeld => input.JumpInputHeld;
 	private bool JumpInputDown => input.JumpInputDown;
@@ -34,15 +35,14 @@ public class PlayerJump : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate() {
 		//when grounded
-		if (Grounded && HasJumpCooldownPassed) {
+		if (IsAboveGround && HasJumpCooldownPassed) {
 			canJump = true;
 			hasActivatedLeniencyCountdown = false;
 			hasJumped = false;
 		}
 
-		bool isAboveGround = Physics.Raycast(rb.position, Vector3.down, aboveGroundDistanceToJump, input.WhatIsGround);
 		//set jump leniency when in air
-		if ((!Grounded && !isAboveGround) && !JumpInputHeld) {
+		if (!IsAboveGround && !JumpInputHeld) {
 			if (!hasActivatedLeniencyCountdown) {
 				hasActivatedLeniencyCountdown = true;
 				Invoke(nameof(SetJumpLeniency), postGroundJumpLeniency);
