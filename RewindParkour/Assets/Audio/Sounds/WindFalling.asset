@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WindFalling
   m_EditorClassIdentifier: 
   clips:
-  - AudioClip: {fileID: 8300000, guid: c60f4db4d4632474fb21836daa829e10, type: 3}
-    volume: 0.05
+  - AudioClip: {fileID: 8300000, guid: 510baf0118d895e4c93f525112354533, type: 3}
+    volume: 1
     pitch: 1
   loop: 1
   fadeInTime: 0.5

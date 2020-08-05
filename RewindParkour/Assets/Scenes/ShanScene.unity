@@ -2449,11 +2449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8971122711800227733, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
       propertyPath: minVolume
-      value: 0.05
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8971122711800227733, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
       propertyPath: maxVolume
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971122711800227733, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
       propertyPath: maxVelocity

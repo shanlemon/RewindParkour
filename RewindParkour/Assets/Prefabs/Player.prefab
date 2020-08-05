@@ -350,6 +350,8 @@ GameObject:
   - component: {fileID: 8971122711800227733}
   - component: {fileID: 755472439}
   - component: {fileID: 755472440}
+  - component: {fileID: 5014304987309595543}
+  - component: {fileID: 4027263096241526889}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -543,8 +545,8 @@ MonoBehaviour:
   playerMovement: {fileID: 8697892930404465749}
   rigidbody: {fileID: 8697892930404465754}
   windSound: {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
-  minVolume: 0.05
-  maxVolume: 0.1
+  minVolume: 0.5
+  maxVolume: 1
   startVelocityMagnitude: 30
   maxVelocity: 120
 --- !u!114 &755472439
@@ -573,6 +575,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8697892930404465749}
   input: {fileID: 755472439}
+  jumpForce: 250
+  upwardsForce: 30
+  downwardsForce: 20
+  jumpCooldown: 0.25
+  timeToApplyUpwardsForce: 0.125
+  postGroundJumpLeniency: 0.15
+  hasJumped: 0
+--- !u!114 &5014304987309595543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09f0c3dbaa38cc47b7faf84c9bbf435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4027263096241526889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8697892930404465751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d42bc65a0d2694db949f9262a59604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8697892930404465749}
+  input: {fileID: 5014304987309595543}
   jumpForce: 250
   upwardsForce: 30
   downwardsForce: 20
