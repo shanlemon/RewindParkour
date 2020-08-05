@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	public bool JumpInputDown { get; private set; }
 
 	public bool Grounded { get; private set; }
-	public bool IsMoving => (XInput != 0) && (YInput != 0);
+	public bool IsMoving => XInput != 0 || YInput != 0;
 
 	public Vector3 NormalVector { get; private set; }
 

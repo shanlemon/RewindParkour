@@ -33,6 +33,7 @@ public class PlayerFootstepSoundEmitter : MonoBehaviour {
 	}
 
 	private void PlayFootStepAudio() {
+		Debug.Log("PLAY SOUND");
 		// pick & play a random footstep sound from the array,
 		Managers.AudioManager.PlayOneShot(footstepSound.name);
 
