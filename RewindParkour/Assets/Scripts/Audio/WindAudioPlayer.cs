@@ -27,7 +27,6 @@ public class WindAudioPlayer : MonoBehaviour {
 		}
 
 		if (playingClip) {
-			Debug.Log(rigidbody.velocity.magnitude + " " + playerLocomotion.MaxSpeed);
 			windSound.source.volume = Mathf.Lerp(minVolume, maxVolume, rigidbody.velocity.magnitude / maxVelocity);
 		}
 

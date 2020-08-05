@@ -120,7 +120,7 @@ public class AudioManager : MonoBehaviour
 
 	private void StartPlay(Sound s)
 	{
-		if (s == null || s.clips.Length == 0 || s.source == null) return;
+		if (s == null || s.clips.Length == 0 || s.source == null || s.source.isPlaying) return;
 		
 		Clip clip = s.GetRandomClip();
 		s.source.clip = clip.AudioClip;
