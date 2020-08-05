@@ -352,8 +352,6 @@ GameObject:
   - component: {fileID: 755472440}
   - component: {fileID: 755472433}
   - component: {fileID: 755472434}
-  - component: {fileID: 5852141632686509702}
-  - component: {fileID: 3168266730614954688}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -608,40 +606,3 @@ MonoBehaviour:
   playerLocomotion: {fileID: 755472433}
   defaultAccelerationMultiplier: 1.2
   defaultMaxSpeedMultiplier: 1.1333333
---- !u!114 &5852141632686509702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697892930404465751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e09f0c3dbaa38cc47b7faf84c9bbf435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &3168266730614954688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697892930404465751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d42bc65a0d2694db949f9262a59604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 5852141632686509702}
-  rb: {fileID: 8697892930404465754}
-  jumpForce: 250
-  upwardsForce: 30
-  downwardsForce: 20
-  jumpCooldown: 0.25
-  timeToApplyUpwardsForce: 0.125
-  postGroundJumpLeniency: 0.15
-  aboveGroundDistanceToJump: 2
-  hasJumped: 0
