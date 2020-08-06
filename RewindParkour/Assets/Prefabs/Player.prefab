@@ -476,3 +476,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   camObj: {fileID: 0}
+  crouchScale: {x: 1, y: 0.5, z: 1}
+  slideForce: 400
+  slideFriction: 3

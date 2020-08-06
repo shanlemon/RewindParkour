@@ -2,27 +2,37 @@
 
 public class StrafeMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float accel = 200f;         // How fast the player accelerates on the ground
-    [SerializeField]
-    private float airAccel = 200f;      // How fast the player accelerates in the air
-    [SerializeField]
-    private float maxSpeed = 6.4f;      // Maximum player speed on the ground
-    [SerializeField]
-    private float maxAirSpeed = 0.6f;   // "Maximum" player speed in the air
-    [SerializeField]
-    private float friction = 8f;        // How fast the player decelerates on the ground
-    [SerializeField]
-    private float jumpForce = 5f;       // How high the player jumps
-    [SerializeField]
-    private LayerMask groundLayers;
+    [SerializeField] private float accel = 200f;         // How fast the player accelerates on the ground
+    [SerializeField] private float airAccel = 200f;      // How fast the player accelerates in the air
+    [SerializeField] private float maxSpeed = 6.4f;      // Maximum player speed on the ground
+    [SerializeField] private float maxAirSpeed = 0.6f;   // "Maximum" player speed in the air
+    [SerializeField]  private float friction = 8f;        // How fast the player decelerates on the ground
+    [SerializeField] private float jumpForce = 5f;       // How high the player jumps
+    [SerializeField] private LayerMask groundLayers;
 
-    [SerializeField]
-    private GameObject camObj;
+    [SerializeField] private GameObject camObj;
 
+
+    //SLIDING
+    [SerializeField] private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
+    [SerializeField] private float slideForce = 400;
+    [SerializeField] private float slideFriction = 3f;
+	private bool isCrouching = false;
+    private Vector3 playerScale;
+
+
+    private Rigidbody rb;
     private float lastJumpPress = -1f;
     private float jumpPressDuration = 0.1f;
 	private bool onGround = false;
+    private Vector2 input = default;
+
+    
+    private void Start() {
+        input = new Vector2();
+        rb = GetComponent<Rigidbody>();
+        playerScale = transform.localScale;
+    }
     
 	private void Update()
     {
@@ -31,22 +41,47 @@ public class StrafeMovement : MonoBehaviour
 		{
 			lastJumpPress = Time.time;
 		}
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            StartCrouch();
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+            StopCrouch();
+
+        if (isCrouching) return;
+		input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
 	}
 
 	private void FixedUpdate()
 	{
 
-		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
         // Get player velocity
-        Vector3 playerVelocity = GetComponent<Rigidbody>().velocity;
+        Vector3 playerVelocity = rb.velocity;
         // Slow down if on ground
         playerVelocity = CalculateFriction(playerVelocity);
         // Add player input
         playerVelocity += CalculateMovement(input, playerVelocity);
         // Assign new velocity to player object
-		GetComponent<Rigidbody>().velocity = playerVelocity;
+		rb.velocity = playerVelocity;
 	}
+
+
+
+    private void StartCrouch() {
+        isCrouching = true;
+        transform.localScale = crouchScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        if (rb.velocity.magnitude > 0.5f) {
+            if (onGround) {
+                rb.AddForce(camObj.transform.forward * slideForce);
+            }
+        }
+    }
+
+    private void StopCrouch() {
+        isCrouching = false;
+        transform.localScale = playerScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+    }
 
     /// <summary>
     /// Slows down the player if on ground
@@ -61,10 +96,12 @@ public class StrafeMovement : MonoBehaviour
         
 		float speed = currentVelocity.magnitude;
 
+        // If you are on the ground, jumping, or not moving DONT APPLY FRICTION
         if (!onGround || Input.GetButton("Jump") || speed == 0f)
             return currentVelocity;
 
-        float drop = speed * friction * Time.deltaTime;
+        float drop = speed * (isCrouching ? slideFriction : friction) * Time.deltaTime;
+        
         return currentVelocity * (Mathf.Max(speed - drop, 0f) / speed);
     }
     
@@ -129,7 +166,7 @@ public class StrafeMovement : MonoBehaviour
 	{
 		Vector3 jumpVelocity = Vector3.zero;
 
-		if(Time.time < lastJumpPress + jumpPressDuration && yVelocity < jumpForce && CheckGround())
+		if(!isCrouching && Time.time < lastJumpPress + jumpPressDuration && yVelocity < jumpForce && CheckGround())
 		{
 			lastJumpPress = -1f;
 			jumpVelocity = new Vector3(0f, jumpForce - yVelocity, 0f);
