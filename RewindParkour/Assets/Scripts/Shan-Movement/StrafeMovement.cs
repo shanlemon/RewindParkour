@@ -72,7 +72,8 @@ public class StrafeMovement : MonoBehaviour
 
     private void StartCrouch() {
         isCrouching = true;
-        Managers.AudioManager.Play("Slide");
+        if (onGround)
+            Managers.AudioManager.Play("Slide");
         transform.localScale = crouchScale;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f) {
@@ -102,7 +103,7 @@ public class StrafeMovement : MonoBehaviour
         
 		float speed = currentVelocity.magnitude;
 
-        if(speed <= 0.5f)
+        if(speed <= 2f && isCrouching)
         {
             Debug.Log("STOP SLIDE SOUND");
             Managers.AudioManager.Stop("Slide");

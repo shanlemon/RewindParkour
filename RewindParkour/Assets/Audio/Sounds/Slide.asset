@@ -18,5 +18,5 @@ MonoBehaviour:
     pitch: 1
   loop: 1
   fadeInTime: 0
-  fadeOutTime: 0.2
+  fadeOutTime: 0
   source: {fileID: 0}

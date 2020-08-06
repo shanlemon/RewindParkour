@@ -55,6 +55,7 @@ public class AudioManager : MonoBehaviour
 	public void PlayOneShotAtLocation(string name, GameObject location, float volumeMultiplier = 1, float pitchMultiplier = 1)
 	{
 		Sound s = GetSound(name);
+		Debug.Log("about to play: " + s.name);
 
 		if (s == null || location == null)
 		{
@@ -142,7 +143,7 @@ public class AudioManager : MonoBehaviour
 
 	private void StopPlay(Sound s, bool ignoreFade)
 	{
-		if (s == null || s.clips.Length == 0 || s.source == null) return;
+		if (s == null || s.clips.Length == 0 || s.source == null || !s.source.isPlaying) return;
 
 		if (s.fadeOutTime > 0 && !ignoreFade)
 		{
