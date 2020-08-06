@@ -20,6 +20,12 @@ public class Managers : MonoBehaviour
     [SerializeField] private GameManager gameManager = default;
     public static GameManager GameManager => instance?.gameManager;
 
+    [SerializeField] private GameObject playerManager = default;
+    public static GameObject Player => instance?.playerManager;
+
+    [SerializeField] private GameObject cameraManager = default;
+    public static GameObject Camera => instance?.cameraManager;
+
 
 
     private void Awake() {

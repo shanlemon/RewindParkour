@@ -7,12 +7,17 @@ using UnityEngine;
 /// </summary>
 public class PortalTeleporter : MonoBehaviour
 {
+    // Collider plane on other portal
     [SerializeField] private Transform otherPlaneCollider = default; 
 
-    // Collider plane on other portal
-    [SerializeField] private Transform player = default;
+    private Transform player = default;
     
     private bool playerIsOverLapping = false;
+
+    private void Start()
+    {
+        player = Managers.Player.transform;
+    }
 
     // Update is called once per frame
     void Update()
