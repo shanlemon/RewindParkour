@@ -10,6 +10,7 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private Transform camera = default;
     [SerializeField] private Transform player = default;
     [SerializeField] private float maxDistance = 100f;
+    [SerializeField] private float force = default;
 
     private Vector3 grapplePoint = default;
     private SpringJoint joint = default;
@@ -43,6 +44,8 @@ public class GrapplingGun : MonoBehaviour
 
         if (Physics.Raycast(origin: camera.position, direction: camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
+            hit.collider.attachedRigidbody?.AddForce((hit.collider.transform.position - transform.position) * force);
+
             Managers.AudioManager.PlayOneShot("GrappleShot");
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();

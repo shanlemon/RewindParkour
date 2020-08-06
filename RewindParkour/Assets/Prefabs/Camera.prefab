@@ -604,6 +604,7 @@ MonoBehaviour:
   camera: {fileID: 9063246519417671422}
   player: {fileID: 0}
   maxDistance: 100
+  force: 10
 --- !u!114 &2757235531569165401
 MonoBehaviour:
   m_ObjectHideFlags: 0
