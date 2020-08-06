@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PortalTeleporter : MonoBehaviour
 {
-    [SerializeField] private Transform receiver = default; 
+    [SerializeField] private Transform otherPlaneCollider = default; 
 
     // Collider plane on other portal
     [SerializeField] private Transform player = default;
@@ -26,12 +26,12 @@ public class PortalTeleporter : MonoBehaviour
             if (dotProduct < 0f)
             {
                 // Teleport the player
-                float rotationDiff = -Quaternion.Angle(transform.rotation, receiver.rotation);
+                float rotationDiff = -Quaternion.Angle(transform.rotation, otherPlaneCollider.rotation);
                 rotationDiff += 180;
                 player.Rotate(Vector3.up, rotationDiff);
 
                 Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
-                player.position = receiver.position + positionOffset;
+                player.position = otherPlaneCollider.position + positionOffset;
 
                 playerIsOverLapping = false;
             }
