@@ -46,8 +46,10 @@ public class StrafeMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
 
-        if (isCrouching) return;
-		input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (isCrouching)
+            input = Vector2.zero;
+        else
+		    input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 	}
 
