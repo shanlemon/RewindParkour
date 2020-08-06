@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
   - {fileID: 11400000, guid: 3d1fe2733b91eea41a0cb06df22cef26, type: 2}
   - {fileID: 11400000, guid: 8967fbc6631740a43b1033e3a0895eb4, type: 2}
+  - {fileID: 11400000, guid: a53521166ef92af4a9e768d6189ec91e, type: 2}
   - {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
   audioMixerGroup: {fileID: 24300002, guid: 6e542249cc9bfb94ba292f45c18a312c, type: 2}
 --- !u!114 &6923361582997587019

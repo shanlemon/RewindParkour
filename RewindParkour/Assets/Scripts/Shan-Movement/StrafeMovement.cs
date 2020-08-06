@@ -72,6 +72,7 @@ public class StrafeMovement : MonoBehaviour
 
     private void StartCrouch() {
         isCrouching = true;
+        Managers.AudioManager.Play("Slide");
         transform.localScale = crouchScale;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f) {
@@ -83,6 +84,7 @@ public class StrafeMovement : MonoBehaviour
 
     private void StopCrouch() {
         isCrouching = false;
+        Managers.AudioManager.Stop("Slide");
         transform.localScale = playerScale;
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
     }
@@ -100,7 +102,13 @@ public class StrafeMovement : MonoBehaviour
         
 		float speed = currentVelocity.magnitude;
 
-        // If you are on the ground, jumping, or not moving DONT APPLY FRICTION
+        if(speed <= 0.5f)
+        {
+            Debug.Log("STOP SLIDE SOUND");
+            Managers.AudioManager.Stop("Slide");
+        }
+
+        // If you are not on the ground, jumping, or not moving DONT APPLY FRICTION
         if (!onGround || Input.GetButton("Jump") || speed == 0f)
             return currentVelocity;
 
