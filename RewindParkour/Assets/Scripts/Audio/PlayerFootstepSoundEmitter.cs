@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerFootstepSoundEmitter : MonoBehaviour {
 	[SerializeField] private Sound footstepSound = default;
 	[SerializeField] private float speed = default;
-	[SerializeField] private PlayerInput pm = default;
+	private StrafeMovement sm = default;
 
 	private float stepCycle;
 	private float nextStep;
 	// Start is called before the first frame update
 	void Start() {
+		sm = GetComponent<StrafeMovement>();
 		stepCycle = 0f;
 		nextStep = stepCycle / 2f;
 	}
@@ -20,7 +21,7 @@ public class PlayerFootstepSoundEmitter : MonoBehaviour {
 	}
 
 	private void ProgressStepCycle() {
-		if (pm.IsMoving && pm.Grounded) {
+		if (sm.IsMoving && sm.onGround) {
 			stepCycle += speed * Time.deltaTime;
 		}
 

@@ -17,14 +17,16 @@ public class StrafeMovement : MonoBehaviour
     [SerializeField] private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     [SerializeField] private float slideForce = 400;
     [SerializeField] private float slideFriction = 3f;
+
+    public bool IsMoving {get {return input.x != 0 || input.y != 0;}}
 	private bool isCrouching = false;
     private Vector3 playerScale;
 
+	public bool onGround = false;
 
     private Rigidbody rb;
     private float lastJumpPress = -1f;
     private float jumpPressDuration = 0.1f;
-	private bool onGround = false;
     private Vector2 input = default;
 
     

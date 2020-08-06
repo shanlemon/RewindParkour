@@ -7,7 +7,6 @@ public class PlayerInput : MonoBehaviour {
 	public float YInput { get; private set; }
 	public bool JumpInputHeld { get; private set; }
 	public bool JumpInputDown { get; private set; }
-
 	public bool Grounded { get; private set; }
 	public bool IsMoving => XInput != 0 || YInput != 0;
 
@@ -16,11 +15,6 @@ public class PlayerInput : MonoBehaviour {
 	[SerializeField] private LayerMask whatIsGround;
 	public LayerMask WhatIsGround => whatIsGround;
 
-
-	// Start is called before the first frame update
-	void Start() {
-
-	}
 
 	private float jumpInputDownTime = 0.15f;
 	private bool hasInvokedJumpDownTimer = false;

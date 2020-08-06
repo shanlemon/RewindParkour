@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 7485899888935052868}
   - component: {fileID: 811357272}
   - component: {fileID: 8971122711800227733}
-  - component: {fileID: 755472439}
   - component: {fileID: 755472433}
   m_Layer: 2
   m_Name: Player
@@ -418,7 +417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepSound: {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
   speed: 2
-  pm: {fileID: 755472439}
 --- !u!114 &8971122711800227733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d950a0e6c22e4448a1f918ff3b7106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 755472439}
+  playerInput: {fileID: 755472439, guid: 89b7160ec48d0a94e94bb33dcbea5c31, type: 3}
   playerLocomotion: {fileID: 0}
   rigidbody: {fileID: 8697892930404465754}
   windSound: {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}
@@ -439,21 +437,6 @@ MonoBehaviour:
   maxVolume: 1
   startVelocityMagnitude: 30
   maxVelocity: 120
---- !u!114 &755472439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697892930404465751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e09f0c3dbaa38cc47b7faf84c9bbf435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &755472433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,3 +462,4 @@ MonoBehaviour:
   crouchScale: {x: 1, y: 0.5, z: 1}
   slideForce: 400
   slideFriction: 3
+  onGround: 0
