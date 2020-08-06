@@ -7,9 +7,15 @@ using UnityEngine;
 /// </summary
 public class PortalCamera : MonoBehaviour
 {
-    [SerializeField] private Transform playerCamera = default;
+    private Transform playerCamera = default;
     [SerializeField] private Transform portal = default;
     [SerializeField] private Transform otherPortal = default;
+
+
+    private void Start()
+    {
+        playerCamera = Managers.Camera.transform;
+    }
 
     // Update is called once per frame
     void LateUpdate()
