@@ -60,6 +60,25 @@ MonoBehaviour:
   smooth: 10
   posOffset: 0.05
   movingSmooth: 10
+--- !u!95 &1618696674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957105401315301856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 79de297030da9f848a36b9aaf309fcba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &506289267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +293,14 @@ PrefabInstance:
     - target: {fileID: 172038348, guid: 7888a124070c63b45a7760467d241a68, type: 3}
       propertyPath: shakeMagnitude
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 172038348, guid: 7888a124070c63b45a7760467d241a68, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1618696674}
+    - target: {fileID: 172038348, guid: 7888a124070c63b45a7760467d241a68, type: 3}
+      propertyPath: recoilForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9063246519417671416, guid: 7888a124070c63b45a7760467d241a68, type: 3}
       propertyPath: m_Name

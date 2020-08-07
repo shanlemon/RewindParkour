@@ -12,13 +12,19 @@ public class Shooting : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Sound gunshotSound;
+    [SerializeField] private Animator anim;
     [Header("Camera Shake")]
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 1f;
+    [SerializeField] private float recoilForce = 100f;
     
 
     private float nextTimeToFire = .25f;
+    private Rigidbody playerRB;
 
+    private void Start() {
+        playerRB = Managers.Player.GetComponent<Rigidbody>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +39,8 @@ public class Shooting : MonoBehaviour
     {
         Debug.Log("SHOOT");
         muzzleFlash.Play();
+        anim.SetTrigger("Gunshot");
+        playerRB.AddForce(-transform.forward * recoilForce);
         StartCoroutine(CameraShake.Instance.Shake(shakeDuration, shakeMagnitude));
         Managers.AudioManager.PlayOneShot(gunshotSound.name);
         RaycastHit hit;
