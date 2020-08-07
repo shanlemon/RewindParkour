@@ -11997,6 +11997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 10
   smooth: 10
+  posOffset: 0.05
+  movingSmooth: 10
 --- !u!4 &1624036896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898368834167269682, guid: a6dadcef065ff3c459bb052b7a75fb8c, type: 3}
