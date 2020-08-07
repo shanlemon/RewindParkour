@@ -44,22 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 0}
---- !u!114 &1618696673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4957105401315301856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d668cbe2039d5498c12393791f3de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensity: 10
-  smooth: 10
-  posOffset: 0.05
-  movingSmooth: 10
 --- !u!95 &1618696674
 Animator:
   serializedVersion: 3
@@ -79,6 +63,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1618696673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957105401315301856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d668cbe2039d5498c12393791f3de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 10
+  smooth: 10
+  posOffset: 0.05
+  movingSmooth: 10
 --- !u!114 &506289267
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 9063246520573142089}
+  rope: {fileID: 0}
 --- !u!1 &9063246520573142091
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 9063246520573142089}
+  rope: {fileID: 2757235531569165401}
 --- !u!114 &9063246520573142089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +660,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hookPos: {fileID: 227174535755322807}
+  pullForce: 50
 --- !u!114 &172038348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +683,10 @@ MonoBehaviour:
   muzzleFlash: {fileID: 7600649754576884504}
   impactEffect: {fileID: 6553487048692320948, guid: 4cff4a0c039a68740b66eaccc22c7de5, type: 3}
   gunshotSound: {fileID: 11400000, guid: 8967fbc6631740a43b1033e3a0895eb4, type: 2}
+  anim: {fileID: 0}
+  shakeDuration: 0.5
+  shakeMagnitude: 1
+  recoilForce: 100
 --- !u!1 &9203748141412823405
 GameObject:
   m_ObjectHideFlags: 0

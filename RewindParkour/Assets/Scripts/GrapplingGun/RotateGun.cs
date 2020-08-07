@@ -6,9 +6,15 @@ using UnityEngine;
 public class RotateGun : MonoBehaviour
 {
     [SerializeField] GrapplingGun gun = default;
+    [SerializeField] private GrapplingRope rope = default;
 
     private Quaternion desiredRotation = default;
     private float rotationSpeed = 5f;
+
+    private void Start()
+    {
+        //rope = GetComponent<GrapplingRope>();
+    }
 
     private void Update()
     {

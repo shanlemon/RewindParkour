@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using UnityEngine;
 
 public class GrapplingRope : MonoBehaviour
@@ -16,10 +17,14 @@ public class GrapplingRope : MonoBehaviour
     [SerializeField] private float waveCount = default;
     [SerializeField] private float waveHeight = default;
     [SerializeField] private AnimationCurve affectCurve = default;
+    [SerializeField] private Transform hookPos = default;
+    [SerializeField] private float pullForce = 250f;
 
     private LineRenderer lineRenderer = default;
     private Vector3 currentGrapplePos = default;
     private Spring spring = default;
+    private Transform hookOrigTransform = default;
+    private Rigidbody playerRB;
 
     // Getters
     public GameObject Hook => hook;
@@ -29,6 +34,8 @@ public class GrapplingRope : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         spring = new Spring();
         spring.SetTarget(0);
+        hookOrigTransform = hook.transform;
+        playerRB = Managers.Player.GetComponent<Rigidbody>();
     }
 
     private void LateUpdate()
@@ -44,7 +51,9 @@ public class GrapplingRope : MonoBehaviour
         if (!gun.IsGrappling())
         {
             currentGrapplePos = gun.GunTip.position;
+            hook.transform.SetParent(hookPos);
             hook.transform.localPosition = Vector3.zero;
+            hook.transform.localRotation = new Quaternion(-45, 0, 0, 1);
             spring.Reset();
             if (lineRenderer.positionCount > 0)
                 lineRenderer.positionCount = 0;
@@ -61,7 +70,14 @@ public class GrapplingRope : MonoBehaviour
         spring.SetStrength(strength);
         spring.Update(Time.deltaTime);
 
-        var grapplePoint = gun.GrapplePoint;
+        gun.GrapplePoint = hook.transform.position;
+
+        if (Vector3.Distance(gun.GrapplePoint, transform.position) > gun.maxDistance)
+        {
+            playerRB.AddForce((gun.GrapplePoint - transform.position).normalized * pullForce);
+        }
+
+        var grapplePoint = hook.transform.position;
         var gunTipPosition = gun.GunTip.position;
         var up = Quaternion.LookRotation((grapplePoint - gunTipPosition).normalized) * Vector3.up;
 
@@ -76,6 +92,6 @@ public class GrapplingRope : MonoBehaviour
             lineRenderer.SetPosition(i, Vector3.Lerp(gunTipPosition, currentGrapplePos, delta) + offset);
         }
 
-        hook.transform.position = grapplePoint;
+        //hook.transform.position = grapplePoint;
     }
 }

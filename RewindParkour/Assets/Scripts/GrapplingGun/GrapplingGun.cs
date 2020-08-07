@@ -9,16 +9,23 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private Transform gunTip = default;
     [SerializeField] private Transform camera = default;
     [SerializeField] private Transform player = default;
-    [SerializeField] private float maxDistance = 100f;
+    [SerializeField] public float maxDistance = 100f;
     [SerializeField] private float force = default;
 
     private Vector3 grapplePoint = default;
     private SpringJoint joint = default;
+    private GrapplingRope rope = default;
+    private bool hasRigidBody = false;
     
 
     // Getters
-    public Vector3 GrapplePoint => grapplePoint;
+    public Vector3 GrapplePoint { set; get; }
     public Transform GunTip => gunTip;
+
+    private void Start()
+    {
+        rope = GetComponent<GrapplingRope>();
+    }
 
     private void Update()
     { 
@@ -47,21 +54,42 @@ public class GrapplingGun : MonoBehaviour
             hit.collider.attachedRigidbody?.AddForce((hit.collider.transform.position - transform.position) * force);
 
             Managers.AudioManager.PlayOneShot("GrappleShot");
-            grapplePoint = hit.point;
+            Vector3 offset = hit.collider.transform.position - transform.position;
+            GrapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = grapplePoint;
+            joint.connectedAnchor = GrapplePoint;
+            
+            float distanceFromPoint = Vector3.Distance(a: player.position, b: GrapplePoint);
 
-            float distanceFromPoint = Vector3.Distance(a: player.position, b: grapplePoint);
+            rope.Hook.transform.SetParent(hit.collider.transform);
+            rope.Hook.transform.position = hit.point;
+
+            if (hit.collider.attachedRigidbody != null)
+            {
+                joint.maxDistance = distanceFromPoint * 0.1f;
+                joint.minDistance = distanceFromPoint * 0.1f;
+                hasRigidBody = true;
+                joint.connectedBody = hit.collider.attachedRigidbody;
+
+                joint.spring = 0f;
+                joint.damper = 2f;
+                joint.massScale = 4.5f;
+            }
 
             // The distance grapple will try to keep from grapple point
-            joint.maxDistance = distanceFromPoint * 0.8f;
-            joint.minDistance = distanceFromPoint * .25f;
+            if (!hasRigidBody)
+            {
+                joint.maxDistance = distanceFromPoint * 0.8f;
+                joint.minDistance = distanceFromPoint * .25f;
+
+                joint.spring = 10f;
+                joint.damper = 2f;
+                joint.massScale = 4.5f;
+            }
 
 
-            joint.spring = 10f;
-            joint.damper = 2f;
-            joint.massScale = 4.5f;
+            
         }
     }
 
@@ -70,6 +98,7 @@ public class GrapplingGun : MonoBehaviour
     /// </summary>
     private void StopGrapple()
     {
+        hasRigidBody = false;
         Destroy(joint);
 
     }
