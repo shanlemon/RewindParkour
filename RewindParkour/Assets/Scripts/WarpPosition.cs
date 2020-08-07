@@ -49,8 +49,8 @@ public class WarpPosition : MonoBehaviour {
 				return;
 			}
 
-			customWarpDeltaTime = Mathf.Lerp(customWarpDeltaTime, customWarpDeltaTime / 1.2f, customWarpDeltaTime);
-			customWarpDeltaTime = Mathf.Max(customWarpDeltaTime, 0.01f);
+			// customWarpDeltaTime = Mathf.Lerp(customWarpDeltaTime, customWarpDeltaTime / 1.2f, customWarpDeltaTime);
+			// customWarpDeltaTime = Mathf.Max(customWarpDeltaTime, 0.01f);
 			if (timer >= customWarpDeltaTime) {
 				timer = 0;
 				WarpMove();

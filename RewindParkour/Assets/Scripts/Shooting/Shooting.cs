@@ -12,6 +12,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Sound gunshotSound;
+    [Header("Camera Shake")]
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeMagnitude = 1f;
+    
 
     private float nextTimeToFire = .25f;
 
@@ -29,6 +33,7 @@ public class Shooting : MonoBehaviour
     {
         Debug.Log("SHOOT");
         muzzleFlash.Play();
+        StartCoroutine(CameraShake.Instance.Shake(shakeDuration, shakeMagnitude));
         Managers.AudioManager.PlayOneShot(gunshotSound.name);
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, range))

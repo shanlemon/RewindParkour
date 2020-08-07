@@ -103,7 +103,7 @@ public class StrafeMovement : MonoBehaviour
         
 		float speed = currentVelocity.magnitude;
 
-        if(speed <= 2f && isCrouching)
+        if(Managers.AudioManager.IsPlaying("Slide") && speed <= 2f && isCrouching)
         {
             Debug.Log("STOP SLIDE SOUND");
             Managers.AudioManager.Stop("Slide");

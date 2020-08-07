@@ -236,7 +236,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36086
+  m_Name: pb_Mesh38392
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -526,7 +526,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36114
+  m_Name: pb_Mesh38420
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5080,6 +5080,14 @@ PrefabInstance:
       propertyPath: impactForce
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4110717364829749531, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
+      propertyPath: shakeMagnitude
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110717364829749531, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
+      propertyPath: shakeDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4661901386935214764, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
       propertyPath: slideFriction
       value: 1
@@ -5331,6 +5339,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &506289262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4957105401492259800, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
+  m_PrefabInstance: {fileID: 356505786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &506289267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506289262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308a5f75f2eed8c40aeef006107e6fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &634142106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7193,7 +7218,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36046
+  m_Name: pb_Mesh38352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11552,7 +11577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35984
+  m_Name: pb_Mesh38290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11790,7 +11815,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35940
+  m_Name: pb_Mesh38246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11953,6 +11978,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3898368834167269682, guid: a6dadcef065ff3c459bb052b7a75fb8c, type: 3}
   m_PrefabInstance: {fileID: 1072598794}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1618696670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4957105401315301856, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
+  m_PrefabInstance: {fileID: 356505786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1618696673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618696670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d668cbe2039d5498c12393791f3de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 10
+  smooth: 10
 --- !u!4 &1624036896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3898368834167269682, guid: a6dadcef065ff3c459bb052b7a75fb8c, type: 3}
@@ -12289,7 +12333,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36022
+  m_Name: pb_Mesh38328
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12596,7 +12640,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35952
+  m_Name: pb_Mesh38258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
