@@ -29,15 +29,26 @@ public class StrafeMovement : MonoBehaviour
     private float jumpPressDuration = 0.1f;
     private Vector2 input = default;
 
+    private Vector3 groundSlopeDir;
+    private float groundSlopeAngle = 0;
+    private Collider collider;
+
     
     private void Start() {
         input = new Vector2();
         rb = GetComponent<Rigidbody>();
         playerScale = transform.localScale;
+        groundSlopeDir = new Vector3();
+        collider = GetComponent<Collider>();
     }
     
 	private void Update()
     {
+        bool prevGround = onGround;
+        onGround = CheckGround();
+
+        if(prevGround != onGround) Managers.AudioManager.PlayOneShot("Footsteps");
+        
         //print(new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude);
         if (Input.GetButton("Jump"))
 		{
@@ -52,6 +63,7 @@ public class StrafeMovement : MonoBehaviour
             input = Vector2.zero;
         else
 		    input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
 
 	}
 
@@ -97,9 +109,7 @@ public class StrafeMovement : MonoBehaviour
     /// <returns>Modified velocity of the player</returns>
 	private Vector3 CalculateFriction(Vector3 currentVelocity)
 	{
-        bool prevGround = onGround;
-        onGround = CheckGround();
-        if(prevGround != onGround) Managers.AudioManager.PlayOneShot("Footsteps");
+       
         
 		float speed = currentVelocity.magnitude;
 
@@ -126,8 +136,6 @@ public class StrafeMovement : MonoBehaviour
     /// <returns>Additional velocity of the player</returns>
 	private Vector3 CalculateMovement(Vector2 input, Vector3 velocity)
 	{
-        onGround = CheckGround();
-
         //Different acceleration values for ground and air
         float curAccel = accel;
         if (!onGround)
@@ -142,8 +150,8 @@ public class StrafeMovement : MonoBehaviour
         
         //Get rotation input and make it a vector
         Vector3 camRotation = new Vector3(0f, camObj.transform.rotation.eulerAngles.y, 0f);
-        Vector3 inputVelocity = Quaternion.Euler(camRotation) *
-                                new Vector3(input.x * curAccel, 0f, input.y * curAccel);
+        Vector3 inputVelocity = Quaternion.AngleAxis(groundSlopeAngle, Vector3.right) * Quaternion.Euler(camRotation) * new Vector3(input.x * curAccel, 0, input.y * curAccel);
+        Debug.DrawRay(transform.position, inputVelocity, Color.blue); 
 
         //Ignore vertical component of rotated input
         Vector3 alignedInputVelocity = new Vector3(inputVelocity.x, 0f, inputVelocity.z) * Time.deltaTime;
@@ -195,7 +203,13 @@ public class StrafeMovement : MonoBehaviour
 	private bool CheckGround()
 	{
         Ray ray = new Ray(transform.position, Vector3.down);
-        bool result = Physics.Raycast(ray, GetComponent<Collider>().bounds.extents.y + 0.1f, groundLayers);
+        RaycastHit hit;
+        bool result = Physics.Raycast(ray, out hit, collider.bounds.extents.y + 0.25f, groundLayers);
+        if (result)
+        {
+            groundSlopeDir = Vector3.Cross(Vector3.Cross(hit.normal, Vector3.down), hit.normal).normalized;
+            groundSlopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+        }
         return result;
 	}
 }
