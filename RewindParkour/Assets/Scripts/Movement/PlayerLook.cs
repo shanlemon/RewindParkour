@@ -8,6 +8,8 @@ public class PlayerLook : MonoBehaviour {
 	[SerializeField] private Transform playerCam;
 	[SerializeField] private float sensitivity = 50f;
 
+	public float scaler;
+
 	void Start() {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -21,8 +23,8 @@ public class PlayerLook : MonoBehaviour {
 	private void Look() {
 		//if (warpPosition.IsWarping) return;
 
-		float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime;
-		float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime;
+		float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * scaler;
+		float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * scaler;
 
 		//Find current look rotation
 		Vector3 rot = playerCam.transform.localRotation.eulerAngles;

@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     
 	[SerializeField] private UIEntrancer menuEntrancer = default;
 	[SerializeField] private UIEntrancer backEntrancer = default;
+    [SerializeField] private Slider mouseSensitivySlider;
 
     public bool SettingsOpen {get; private set;}
     private bool playerWasEnabled;
@@ -18,6 +21,16 @@ public class PauseMenu : MonoBehaviour
 
     private void Start() {
         playerLook = Managers.Player.GetComponent<PlayerLook>();
+        
+        float value = PlayerPrefs.GetFloat("MouseSensitiviy", .5f);
+        SetMouseSensitivity(value);
+    }
+
+    public void SetMouseSensitivity(float amount)
+    {
+        PlayerPrefs.SetFloat("MouseSensitiviy", amount);
+        mouseSensitivySlider.value = amount;
+        playerLook.scaler = amount;
     }
 
     private void Update() {
