@@ -95,7 +95,7 @@ public class StrafeMovement : MonoBehaviour
         }
     }
 
-    private void StopCrouch() {
+    public void StopCrouch() {
         isCrouching = false;
         Managers.AudioManager.Stop("Slide");
         transform.localScale = playerScale;
