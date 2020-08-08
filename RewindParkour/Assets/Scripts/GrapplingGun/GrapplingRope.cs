@@ -29,7 +29,7 @@ public class GrapplingRope : MonoBehaviour
     // Getters
     public GameObject Hook => hook;
 
-    private void Awake()
+    private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         spring = new Spring();

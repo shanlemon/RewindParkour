@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4957105400760155550, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
+      propertyPath: maxDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6654845073977039992, guid: ca7df3396ee40364b834fee39dbfbddf, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -472,7 +476,7 @@ GameObject:
   - component: {fileID: 172758231}
   - component: {fileID: 172758230}
   - component: {fileID: 172758229}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

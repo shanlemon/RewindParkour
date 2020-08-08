@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 9063246520573142089}
-  rope: {fileID: 0}
+  rope: {fileID: 2757235531569165401}
 --- !u!1 &9063246520573142091
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
   gunTip: {fileID: 9063246519488987519}
   camera: {fileID: 9063246519417671422}
   player: {fileID: 0}
-  maxDistance: 100
+  maxDistance: 15
   force: 10
 --- !u!114 &2757235531569165401
 MonoBehaviour:
