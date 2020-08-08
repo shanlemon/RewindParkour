@@ -18,10 +18,11 @@ public class PauseMenu : MonoBehaviour
     public bool SettingsOpen {get; private set;}
     private bool playerWasEnabled;
     private PlayerLook playerLook;
+    private Canvas playerCanvas;
 
     private void Start() {
         playerLook = Managers.Player.GetComponent<PlayerLook>();
-        
+        playerCanvas = Managers.Player.GetComponentInChildren<Canvas>();
         float value = PlayerPrefs.GetFloat("MouseSensitiviy", .5f);
         SetMouseSensitivity(value);
     }
@@ -49,7 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     public void EnterSettings() {
 		settingsMenuPanel.SetActive(true);
-
+        playerCanvas.gameObject.SetActive(false);
 		playerWasEnabled = playerLook.enabled;
 		if (playerWasEnabled) {
 			playerLook.enabled = false;
@@ -68,6 +69,7 @@ public class PauseMenu : MonoBehaviour
 		if (playerWasEnabled) {
 			playerLook.enabled = true;
 		}
+        playerCanvas.gameObject.SetActive(true);
         LockMouse();
 		menuEntrancer.Exit();
 		backEntrancer.Exit();
