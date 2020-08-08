@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class Target : MonoBehaviour
 {
     [SerializeField] private float health  = 50f;
-    public void TakeDamage(float amount)
+
+    public virtual void TakeDamage(float amount)
     {
         health -= amount;
         if (health <= 0f)

@@ -28,6 +28,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Managers.PauseMenu.SettingsOpen) return;
         if (!grapplingGun.IsGrappling() && Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f/fireRate;
