@@ -21,6 +21,8 @@ public class WarpPosition : MonoBehaviour {
 		get => (float)previousPositions.Count / (float)warpStackSize;
 	}
 
+	private string musicName = "BHOPMusic1";
+
 	void Start() {
 		previousPositions = new List<Vector3>();
 		warpStackSize = (int)(warpStorageTimeInSeconds * (1f / Time.fixedDeltaTime));
@@ -72,6 +74,9 @@ public class WarpPosition : MonoBehaviour {
 		if (WarpFillPercentage < minimumFillToWarp)
 			return;
 		Managers.AudioManager.Play("RewindAudio");
+
+		StopAllCoroutines();
+		StartCoroutine(PitchChange(-1));
 		anim.gameObject.SetActive(true);
 		anim.SetBool("IsRewinding", true);
 		rb.useGravity = false;
@@ -80,10 +85,20 @@ public class WarpPosition : MonoBehaviour {
 		warpStartVelocityMagnitude = rb.velocity.magnitude;
 	}
 
+	private IEnumerator PitchChange(float target){
+		while(Managers.AudioManager.GetPitch(musicName) != target)
+		{
+			Managers.AudioManager.SetPitch(musicName, Mathf.Lerp(Managers.AudioManager.GetPitch(musicName), target, Time.deltaTime * 5));
+			yield return null;
+		}
+	}
+
 	//TODO - disable/enable movmeent
 	private void StopWarping() {
 		customWarpDeltaTime = 0.04f;
 		Managers.AudioManager.Stop("RewindAudio");
+		StopAllCoroutines();
+		StartCoroutine(PitchChange(1));
 		anim.gameObject.SetActive(false);
 		anim.SetBool("IsRewinding", false);
 		// Use gravity

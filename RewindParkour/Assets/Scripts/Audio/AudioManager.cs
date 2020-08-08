@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 	[SerializeField]
 	private AudioMixerGroup audioMixerGroup = default;
 	
-	private void Start()
+	private void Awake()
     {	
 		foreach (Sound s in sounds)
 		{
@@ -36,6 +36,16 @@ public class AudioManager : MonoBehaviour
 	public void StopImmediate(string name)
 	{
 		StopPlay(GetSound(name), true);
+	}
+
+	public void SetPitch(string name, float value)
+	{
+		GetSound(name).source.pitch = value;
+	}
+
+	public float GetPitch(string name)
+	{
+		return GetSound(name).source.pitch;
 	}
 
 	public void Toggle (string name) 
