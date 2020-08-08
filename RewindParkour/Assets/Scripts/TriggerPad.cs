@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class TriggerPad : MonoBehaviour
 {
     [SerializeField] private bool isStartPad = default;
@@ -10,6 +10,7 @@ public class TriggerPad : MonoBehaviour
     [SerializeField] private int section = default; // Section this triggerpad is associated with.
     [SerializeField] private TextMeshProUGUI timeDisplay = default; // The sign that you want the time to display on
 
+    [SerializeField] private UnityEvent onEnter;
     public TriggerPad TargetPad => target;
     public int Section => section;
 
@@ -33,9 +34,14 @@ public class TriggerPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Player"))
+        {
+            onEnter.Invoke();
+        }
         // Player has entered an end trigger pad
         if (other.CompareTag("Player") && this.Equals(Managers.GameManager.CurrTarget))
         {
+            
             Managers.GameManager.CurrTarget = null;
             Managers.TimeManager.StopTimer(section, this);
 

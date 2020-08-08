@@ -10,13 +10,15 @@ public class MusicManager : MonoBehaviour
     private Rigidbody rb;
     private void Start() {
         rb = Managers.Player.GetComponent<Rigidbody>();
-
-        Managers.AudioManager.Play(musicSound.name);
     }
     private void Update() {
-        Debug.Log(rb.velocity.magnitude);
         musicSound.source.volume = Mathf.Lerp(minVol, maxVol, rb.velocity.magnitude / maxVelocity);
 
+    }
+
+    public void StartMusic()
+    {
+        Managers.AudioManager.Play(musicSound.name);
     }
 
 
