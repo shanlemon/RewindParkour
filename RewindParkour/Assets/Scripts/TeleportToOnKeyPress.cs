@@ -19,4 +19,9 @@ public class TeleportToOnKeyPress : MonoBehaviour {
 			rb.velocity = Vector3.zero;
 		}
 	}
+
+	public void SetCheckpoint(Vector3 location)
+    {
+		savedPosition = location;
+    }
 }

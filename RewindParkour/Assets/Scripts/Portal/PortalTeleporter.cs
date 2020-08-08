@@ -13,10 +13,12 @@ public class PortalTeleporter : MonoBehaviour
     private Transform player = default;
     
     private bool playerIsOverLapping = false;
+    private TeleportToOnKeyPress checkpoint = default;
 
     private void Start()
     {
         player = Managers.Player.transform;
+        checkpoint = Managers.Player.GetComponent<TeleportToOnKeyPress>();
     }
 
     // Update is called once per frame
