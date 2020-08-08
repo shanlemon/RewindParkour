@@ -105,7 +105,7 @@ public class WarpPosition : MonoBehaviour {
 	private void WarpMove() {
 		rb.velocity = Vector3.zero;
 		rb.MovePosition(previousPositions.Last());
-		Instantiate(spherePrefab, previousPositions.Last(), Quaternion.identity);
+		//Instantiate(spherePrefab, previousPositions.Last(), Quaternion.identity);
 	}
 
 }
