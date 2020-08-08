@@ -54,9 +54,9 @@ public class StrafeMovement : MonoBehaviour
 		{
 			lastJumpPress = Time.time;
 		}
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
             StartCrouch();
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
             StopCrouch();
 
         if (isCrouching)
