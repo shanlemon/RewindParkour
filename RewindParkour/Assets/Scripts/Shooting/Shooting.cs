@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
 
     [SerializeField] private GrapplingGun grapplingGun;
     [SerializeField] private Transform camera;
-    [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem muzzleFlash, muzzleFlash2;
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Sound gunshotSound;
     [SerializeField] private Animator anim;
@@ -40,6 +40,7 @@ public class Shooting : MonoBehaviour
     {
         Debug.Log("SHOOT");
         muzzleFlash.Play();
+        muzzleFlash2.Play();
         anim.SetTrigger("Gunshot");
         playerRB.AddForce(-transform.forward * recoilForce);
         StartCoroutine(CameraShake.Instance.Shake(shakeDuration, shakeMagnitude));

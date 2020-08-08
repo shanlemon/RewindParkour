@@ -11,6 +11,7 @@ public class WarpPosition : MonoBehaviour {
 	[SerializeField] private PlayerLook pm = default;
 	[SerializeField] private GameObject spherePrefab = default;
 	[SerializeField] private GameObject spherePrefab2 = default;
+	[SerializeField] private Animator anim = default;
 
 	private int warpStackSize;
 
@@ -70,6 +71,9 @@ public class WarpPosition : MonoBehaviour {
 	private void StartWarping() {
 		if (WarpFillPercentage < minimumFillToWarp)
 			return;
+		Managers.AudioManager.Play("RewindAudio");
+		anim.gameObject.SetActive(true);
+		anim.SetBool("IsRewinding", true);
 		rb.useGravity = false;
 		//pm.DisableMovement();
 		IsWarping = true;
@@ -79,6 +83,9 @@ public class WarpPosition : MonoBehaviour {
 	//TODO - disable/enable movmeent
 	private void StopWarping() {
 		customWarpDeltaTime = 0.04f;
+		Managers.AudioManager.Stop("RewindAudio");
+		anim.gameObject.SetActive(false);
+		anim.SetBool("IsRewinding", false);
 		// Use gravity
 		rb.useGravity = true;
 		//pm.EnableMovement();
