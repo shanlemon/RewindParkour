@@ -7,14 +7,14 @@ using UnityEngine;
 /// </summary
 public class PortalCamera : MonoBehaviour
 {
-    private Transform playerCamera = default;
+    [SerializeField] private Transform playerCamera = default;
     [SerializeField] private Transform portal = default;
     [SerializeField] private Transform otherPortal = default;
 
 
     private void Start()
     {
-        playerCamera = Managers.Camera.transform;
+        //playerCamera = Managers.Camera.transform;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class PortalCamera : MonoBehaviour
 
         // Difference between angle rotation of both portals
         float angularDiffBWPortalRotations = Quaternion.Angle(portal.rotation, otherPortal.rotation);
-        
+
         // Create the diff as a quaternion
         Quaternion portalRotationalDiff = Quaternion.AngleAxis(angularDiffBWPortalRotations, Vector3.up);
 
