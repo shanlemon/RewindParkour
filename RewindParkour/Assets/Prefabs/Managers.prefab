@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisplay: {fileID: 0}
+  numLevels: 3
 --- !u!95 &1618696674
 Animator:
   serializedVersion: 3
@@ -289,6 +290,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f4c8ce04d5f8964c963e77ff2521e11, type: 2}
   - {fileID: 11400000, guid: 3d1fe2733b91eea41a0cb06df22cef26, type: 2}
   - {fileID: 11400000, guid: 8967fbc6631740a43b1033e3a0895eb4, type: 2}
+  - {fileID: 11400000, guid: 78d6c8c35c6181f42a8d5b220cbff657, type: 2}
   - {fileID: 11400000, guid: fb0f926b719f4d24d970d00a10faaab7, type: 2}
   - {fileID: 11400000, guid: a53521166ef92af4a9e768d6189ec91e, type: 2}
   - {fileID: 11400000, guid: 0c56a9b89d0ed8145b73fa7fdbf95595, type: 2}

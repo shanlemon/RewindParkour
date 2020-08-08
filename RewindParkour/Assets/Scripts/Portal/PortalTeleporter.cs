@@ -24,12 +24,15 @@ public class PortalTeleporter : MonoBehaviour
     {
         if (playerIsOverLapping)
         {
+            Managers.AudioManager.PlayOneShot("Portal");
             Vector3 portalToPlayer = player.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
-
+            
             // If this is true, the player has moved across the portal
             if (dotProduct < 0f)
             {
+
+                
                 // Teleport the player
                 float rotationDiff = -Quaternion.Angle(transform.rotation, otherPlaneCollider.rotation);
                 rotationDiff += 180;
